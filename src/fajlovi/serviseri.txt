@@ -1,0 +1,3 @@
+Marko|Markovic|0105993190012|MUSKO|Radnicka 29|0652552241|markom|12345|lkjhgfdsal|50000|1
+Ivan|Ivanovic|0105993190012|MUSKO|Radnicka 14|0635212241|ivani|12345|poiuytrewq|70000|2
+Stana|Stanic|0105993190012|ZENSKO|Radnicka 56|0645522141|stanas|12345|mnhjgytrsdl|90000|2

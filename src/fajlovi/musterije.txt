@@ -1,0 +1,3 @@
+Marko|Markovic|0105993190012|MUSKO|Radnicka 29|065552241|markom|12345|lkjhgfdsal|50
+Petar|Petrovic|0105993190012|MUSKO|Radnicka 29|065552241|petarp|12345|sdhhdshdhs|50
+Jovana|Jovanovic|0105993190012|ZENSKO|Radnicka 29|065552241|jovanaj|12345|kjhhuioiui|50
