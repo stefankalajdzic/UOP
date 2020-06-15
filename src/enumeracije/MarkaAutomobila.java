@@ -3,7 +3,7 @@ package enumeracije;
 public enum MarkaAutomobila {
 
 	BMW,
-	LADA,
-	FIAT
+	AUDI,
+	RENAULT
 	
 }

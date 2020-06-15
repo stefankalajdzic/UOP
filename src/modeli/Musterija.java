@@ -2,6 +2,8 @@ package modeli;
 
 import java.util.ArrayList;
 
+import enumeracije.Pol;
+
 public class Musterija extends Korisnik {
 	
 	private int brojNagradnihBodova;
@@ -11,16 +13,20 @@ public class Musterija extends Korisnik {
 		this.brojNagradnihBodova = 0;
 		this.automobili = new ArrayList<Automobil>();
 	}
-		
-	
-	public Musterija(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, String id, int brojNagradnihBodova) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, id);
-		this.brojNagradnihBodova = brojNagradnihBodova;
-	}
+		/*String listaAutomobila = "";
+		if(musterija.getautomobili != null)
+			for(Automobil a : musterija.getautomobili)
+			listaAutomobila += String.valueOf(a.getId) + ",";
+			ovako se upisuje u fajl: listaAutomobila.substring(0,listaAutomobila.length - 1);*/  
 
 
-
+	public Musterija(String id, String ime, String prezime, String jmbg, Pol pol, String adresa,
+				String brojTelefona, String korisnickoIme, String lozinka, int brojNagradnihBodova,
+				ArrayList<Automobil> automobili) {
+			super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
+			this.brojNagradnihBodova = brojNagradnihBodova;
+			this.automobili = automobili;
+		}
 	public ArrayList<Automobil> getAutomobili() {
 		return automobili;
 	}
@@ -42,10 +48,11 @@ public class Musterija extends Korisnik {
 		
 	}
 
+
 	@Override
 	public String toString() {
-		return "Musterija [brojNagradnihBodova=" + brojNagradnihBodova + ", ime=" + ime + ", prezime=" + prezime
-				+ ", jmbg=" + jmbg + "]";
+		return "Musterija [brojNagradnihBodova=" + brojNagradnihBodova + ", automobili=" + automobili + ", id=" + id
+				+ ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + "]";
 	}
-	
+
 }

@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class ServisnaKnjizica {
 
-	private Automobil automobil;
 	private String identifikator;
+	private Automobil automobil;
 	private ArrayList<Servis> servisi;
 	
 	public ServisnaKnjizica() {
-		this.automobil = null;
 		this.identifikator = "";
+		this.automobil = null;
 		this.servisi = new ArrayList<Servis>();
 	}
 	
-	public ServisnaKnjizica(Automobil automobil, String identifikator, ArrayList<Servis> servisi) {
+	public ServisnaKnjizica(String identifikator, Automobil automobil, ArrayList<Servis> servisi) {
 		super();
-		this.automobil = automobil;
 		this.identifikator = identifikator;
+		this.automobil = automobil;
 		this.servisi = servisi;
 	}
 
@@ -49,9 +49,12 @@ public class ServisnaKnjizica {
 	public void setServisi(ArrayList<Servis> servisi) {
 		this.servisi = servisi;
 	}
+
 	@Override
 	public String toString() {
-		return "ServisnaKnjizica [automobil=" + automobil + ", servisi=" + servisi + "]";
+		return "ServisnaKnjizica [identifikator=" + identifikator + ", automobil=" + automobil + ", servisi=" + servisi
+				+ "]";
 	}
+	
 	
 }

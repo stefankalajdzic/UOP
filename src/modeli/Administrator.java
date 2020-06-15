@@ -1,5 +1,7 @@
 package modeli;
 
+import enumeracije.Pol;
+
 public class Administrator extends Korisnik {
 	
 	private float plata;
@@ -8,11 +10,13 @@ public class Administrator extends Korisnik {
 		this.plata = 0;
 	}
 
-	public Administrator(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, String id, float plata) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, id);
+	public Administrator(String id, String ime, String prezime, String jmbg, Pol pol, String adresa, String brojTelefona,
+			String korisnickoIme, String lozinka, float plata) {
+		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
 		this.plata = plata;
 	}
+
+
 
 	public float getPlata() {
 		return plata;
@@ -24,7 +28,10 @@ public class Administrator extends Korisnik {
 
 	@Override
 	public String toString() {
-		return "Administrator [plata=" + plata + ", ime=" + ime + ", prezime=" + prezime + ", jmbg=" + jmbg + "]";
+		return "Administrator [plata=" + plata + ", id=" + id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol
+				+ ", brojTelefona=" + brojTelefona + "]";
 	}
+
+	
 	
 }

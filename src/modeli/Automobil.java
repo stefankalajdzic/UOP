@@ -5,6 +5,7 @@ import enumeracije.ModelAutomobila;
 
 public class Automobil {
 
+	private String id;
 	private Musterija vlasnik;
 	private MarkaAutomobila marka;
 	private ModelAutomobila model;
@@ -12,10 +13,11 @@ public class Automobil {
 	private float zapreminaMotora;
 	private int snagaMotora;
 	private String vrstaGoriva;
-	private String id;
 	private ServisnaKnjizica servisnaKnjizica;
 	
 	public Automobil() {
+		
+		this.id = "";
 		this.vlasnik = new Musterija();
 		this.marka = null;
 		this.model = null;
@@ -23,15 +25,15 @@ public class Automobil {
 		this.zapreminaMotora = 0;
 		this.snagaMotora = 0;
 		this.vrstaGoriva = "";
-		this.id = "";
 		this.servisnaKnjizica = null;
 		
 	}
 	
 	
-	public Automobil(Musterija vlasnik, MarkaAutomobila marka, ModelAutomobila model, String godinaProizvodnje,
-			float zapreminaMotora, int snagaMotora, String vrstaGoriva, String id, ServisnaKnjizica servisnaKnjizica) {
+	public Automobil(String id, Musterija vlasnik, MarkaAutomobila marka, ModelAutomobila model, String godinaProizvodnje,
+			float zapreminaMotora, int snagaMotora, String vrstaGoriva, ServisnaKnjizica servisnaKnjizica) {
 		super();
+		this.id = id;
 		this.vlasnik = vlasnik;
 		this.marka = marka;
 		this.model = model;
@@ -39,7 +41,6 @@ public class Automobil {
 		this.zapreminaMotora = zapreminaMotora;
 		this.snagaMotora = snagaMotora;
 		this.vrstaGoriva = vrstaGoriva;
-		this.id = id;
 		this.servisnaKnjizica = servisnaKnjizica;
 	}
 	public ServisnaKnjizica getServisnaKnjizica() {
@@ -96,13 +97,14 @@ public class Automobil {
 	public void setVrstaGoriva(String vrstaGoriva) {
 		this.vrstaGoriva = vrstaGoriva;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Automobil [vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model + ", godinaProizvodnje="
-				+ godinaProizvodnje + "]";
+		return "Automobil [id=" + id + ", vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model
+				+ ", godinaProizvodnje=" + godinaProizvodnje + ", zapreminaMotora=" + zapreminaMotora + ", snagaMotora="
+				+ snagaMotora + ", vrstaGoriva=" + vrstaGoriva + ", servisnaKnjizica=" + servisnaKnjizica + "]";
 	}
-	
-	
 	
 	
 }

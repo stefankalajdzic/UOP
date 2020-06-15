@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import enumeracije.Pol;
 import modeli.Musterija;
 
 
@@ -22,17 +24,19 @@ public class UcitavanjeMusterija {
 			while((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
 				
-				String ime = lineSplit[0];
-				String prezime = lineSplit[1];
-				String jmbg = lineSplit[2];
-				String pol = lineSplit[3];
-				String adresa = lineSplit[4];
-				String brojTelefona = lineSplit[5];
-				String korisnickoIme = lineSplit[6];
-				String lozinka = lineSplit[7];
-				String id = lineSplit[8];
+				String id = lineSplit[0];
+				String ime = lineSplit[1];
+				String prezime = lineSplit[2];
+				String jmbg = lineSplit[3];
+				int polInt = Integer.parseInt(lineSplit[4]);
+				Pol pol = Pol.values()[polInt];
+				String adresa = lineSplit[5];
+				String brojTelefona = lineSplit[6];
+				String korisnickoIme = lineSplit[7];
+				String lozinka = lineSplit[8];
 				int brojNagradnihBodova = Integer.parseInt(lineSplit[9]);
-				Musterija musterija = new Musterija(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, id, brojNagradnihBodova);
+				
+				Musterija musterija = new Musterija(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, brojNagradnihBodova, null);
 				musterije.add(musterija);
 				
 			}

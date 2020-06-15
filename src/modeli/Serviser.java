@@ -2,6 +2,7 @@ package modeli;
 
 import java.util.ArrayList;
 
+import enumeracije.Pol;
 import enumeracije.SpecijalizacijaServisera;
 
 public class Serviser extends Korisnik {
@@ -16,15 +17,18 @@ public class Serviser extends Korisnik {
 		this.servisi = new ArrayList<Servis>();
 	}
 	
-	
-	public Serviser(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, String id, float plata, SpecijalizacijaServisera specijalizacija) {
-		super(ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, id);
+
+	public Serviser(String id, String ime, String prezime, String jmbg, Pol pol, String adresa, String brojTelefona,
+			String korisnickoIme, String lozinka, float plata, SpecijalizacijaServisera specijalizacija,
+			ArrayList<Servis> servisi) {
+		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
 		this.plata = plata;
 		this.specijalizacija = specijalizacija;
-	}
+		this.servisi = servisi;
 	
+	}
 
+	
 	public ArrayList<Servis> getServisi() {
 		return servisi;
 	}
@@ -47,10 +51,13 @@ public class Serviser extends Korisnik {
 	public void setSpecijalizacija(SpecijalizacijaServisera specijalizacija) {
 		this.specijalizacija = specijalizacija;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Serviser [plata=" + plata + ", specijalizacija=" + specijalizacija + ", ime=" + ime + ", prezime="
-				+ prezime + ", jmbg=" + jmbg + "]";
+		return "Serviser [plata=" + plata + ", specijalizacija=" + specijalizacija + ", servisi=" + servisi + ", id="
+				+ id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + "]";
 	}
+	
 	
 }

@@ -1,32 +1,38 @@
 	 package modeli;
 
+import enumeracije.Pol;
+
 public abstract class Korisnik {
 
+	protected String id;
 	protected String ime;
 	protected String prezime;
 	protected String jmbg;
-	protected String pol;
+	protected Pol pol;
 	protected String adresa; 
 	protected String brojTelefona;
 	protected String korisnickoIme;
 	protected String lozinka;
-	protected String id;
+	
 	
 	public Korisnik() {
+		
+		this.id = "";
 		this.ime = "";
 		this.prezime = "";
 		this.jmbg = "";
-		this.pol = "";
+		this.pol = null;
 		this.adresa = "";
 		this.brojTelefona = "";
 		this.korisnickoIme = "";
 		this.lozinka = "";
-		this.id = "";
 	}
 	
-	public Korisnik(String ime, String prezime, String jmbg, String pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, String id) {
+	public Korisnik(String id, String ime, String prezime, String jmbg, Pol pol, String adresa, String brojTelefona,
+			String korisnickoIme, String lozinka) {
 		super();
+		
+		this.id = id;
 		this.ime = ime;
 		this.prezime = prezime;
 		this.jmbg = jmbg;
@@ -35,6 +41,14 @@ public abstract class Korisnik {
 		this.brojTelefona = brojTelefona;
 		this.korisnickoIme = korisnickoIme;
 		this.lozinka = lozinka;
+		
+		
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -56,10 +70,10 @@ public abstract class Korisnik {
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
-	public String getPol() {
+	public Pol getPol() {
 		return pol;
 	}
-	public void setPol(String pol) {
+	public void setPol(Pol pol) {
 		this.pol = pol;
 	}
 	public String getAdresa() {
@@ -86,12 +100,7 @@ public abstract class Korisnik {
 	public void setLozinka(String lozinka) {
 		this.lozinka = lozinka;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 
 	@Override
 	public String toString() {

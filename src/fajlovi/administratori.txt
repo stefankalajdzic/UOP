@@ -1,2 +1,2 @@
-Stefan|Stefanovic|0108955190952|MUSKO|Radnicka 10|0666244955|stefans|12345|ljkhjghfgd|50000.00
-Ljubo|Ljubic|0108955190952|MUSKO|Radnicka 132|0626244955|ljubolj|12345|jkhyutgfew|90000.0
+1|Ilija|Kalajdzic|0108955190012|1|Radnicka 10|065517239|ilijak|12345|90000
+2|Stefan|Kalajdzic|1508995181921|0|Radnicka 132|0665585466|stefank|12345|90000

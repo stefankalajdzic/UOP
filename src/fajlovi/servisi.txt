@@ -1,3 +1,2 @@
-lioujytfre|lkjhgfdsal|UPISATI DATUM!!!!|Kvar amortizera|Lista delova KAKO UPISATI???|mjkopltyba|ID SERVISNE KNJIZICE|ZAKAZAN
-nbhgtredfw|poiuytrewq|UPISATI DATUM!!!!|Kvar menjaca|Lista delova KAKO UPISATI???|moyrdlockq|ID SERVISNE KNJIZICE|GOTOV
-mnjhytrfde|kolipkrftv|UPISATI DATUM!!!!|Kvar kvacila|Lista delova KAKO UPISATI???|iyuhnmgvcd|ID SERVISNE KNJZIICE|ZAKAZAN
+1|1|1|24.7.2020.|Kvar amortizera|1|1|1
+2|2|2|23.7.2020.|Kvar menjaca|2|2|0

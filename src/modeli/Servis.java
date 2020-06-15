@@ -1,49 +1,51 @@
 package modeli;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import enumeracije.StatusServisa;
 
 public class Servis {
-
+	
+	private String id;
 	private Automobil automobil;
 	private Serviser serviser;
-	private Date termin;
+	private String termin;
 	private String opis;
 	private ArrayList<Deo> delovi;
-	private String id;
 	private ServisnaKnjizica servisnaKnjizica;
 	private StatusServisa status;
 	
 	public Servis() {
+		
+		this.id = "";
 		this.automobil = new Automobil();
 		this.serviser = new Serviser();
-		this.termin = new Date();
+		this.termin = "";
 		this.opis = "";
 		this.delovi = new ArrayList<Deo>();
-		this.id = "";
 		this.servisnaKnjizica = null;
 		this.status = null;
 	}
 	
-	public Servis(Automobil automobil, Serviser serviser, Date termin, String opis, String id,
-			ServisnaKnjizica servisnaKnjizica, StatusServisa status) {
+	public Servis(String id, Automobil automobil, Serviser serviser, String termin, String opis,	
+				ServisnaKnjizica servisnaKnjizica, StatusServisa status) {
 		super();
+		
+		this.id = id;
 		this.automobil = automobil;
 		this.serviser = serviser;
 		this.termin = termin;
 		this.opis = opis;
-		this.id = id;
 		this.servisnaKnjizica = servisnaKnjizica;
 		this.status = status;
+		
 	}
 	public ArrayList<Deo> getDelovi() {
 		return delovi;
 	}
 
 	public void setDelovi(ArrayList<Deo> delovi) {
-		this	.delovi = delovi;
+		this.delovi = delovi;
 	}
 
 	public StatusServisa getStatus() {
@@ -70,12 +72,15 @@ public class Servis {
 	public void setServiser(Serviser serviser) {
 		this.serviser = serviser;
 	}
-	public Date getTermin() {
+	
+	public String getTermin() {
 		return termin;
 	}
-	public void setTermin(Date termin) {
+
+	public void setTermin(String termin) {
 		this.termin = termin;
 	}
+
 	public String getOpis() {
 		return opis;
 	}
@@ -89,9 +94,14 @@ public class Servis {
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	@Override
 	public String toString() {
-		return "Servis [automobil=" + automobil + ", serviser=" + serviser + ", termin=" + termin + ", opis=" + opis
-				+ "]";
+		return "Servis [id=" + id + ", automobil=" + automobil + ", serviser=" + serviser + ", termin=" + termin
+				+ ", opis=" + opis + ", delovi=" + delovi + ", servisnaKnjizica=" + servisnaKnjizica + ", status="
+				+ status + "]";
 	}
+
+	
+	
 }
