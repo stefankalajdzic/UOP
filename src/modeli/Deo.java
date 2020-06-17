@@ -1,7 +1,5 @@
 package modeli;
 
-import java.util.ArrayList;
-
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 
@@ -12,7 +10,6 @@ public class Deo {
 	private ModelAutomobila model;
 	private String naziv;
 	private float cena;
-	private ArrayList<Servis> servisi;
 	private Boolean obrisan;
 	
 	public Deo() {
@@ -21,7 +18,6 @@ public class Deo {
 		this.model = null;
 		this.naziv = "";
 		this.cena = 0;
-		this.servisi = new ArrayList<Servis>();
 		this.obrisan = false;
 	}
 	
@@ -32,7 +28,6 @@ public class Deo {
 		this.model = model;
 		this.naziv = naziv;
 		this.cena = cena;
-		this.servisi = new ArrayList<Servis>();
 		this.obrisan = obrisan;
 	}
 
@@ -43,16 +38,6 @@ public class Deo {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public ArrayList<Servis> getServisi() {
-		return servisi;
-	}
-
-
-	public void setServisi(ArrayList<Servis> servisi) {
-		this.servisi = servisi;
-	}
-
 
 	public MarkaAutomobila getMarka() {
 		return marka;
@@ -89,8 +74,7 @@ public class Deo {
 
 	@Override
 	public String toString() {
-		return "Deo [id=" + id + ", marka=" + marka + ", model=" + model + ", naziv=" + naziv + ", cena=" + cena
-				+ ", servisi=" + servisi + "]";
+		return "Deo [id=" + id + ", marka=" + marka + ", model=" + model + ", naziv=" + naziv + ", cena=" + cena + "]";
 	}
 	
 	

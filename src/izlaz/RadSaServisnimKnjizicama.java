@@ -9,45 +9,37 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import modeli.Administrator;
-import enumeracije.Pol;
+import modeli.ServisnaKnjizica;
 
+public class RadSaServisnimKnjizicama {
 
-public class RadSaAdministratorima {
-
-	public static ArrayList<Administrator> ucitajAdministratore() {
+	public static ArrayList<ServisnaKnjizica> ucitajServisneKnjizice() {
 		
-		ArrayList<Administrator> administratori = new ArrayList<Administrator>();
+		ArrayList<ServisnaKnjizica> servisneKnjizice = new ArrayList<ServisnaKnjizica>();
 		
 		try {
-			File file = new File("src/fajlovi/administratori.txt");
+			File file = new File("src/fajlovi/servisneknjizice.txt");
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			String line;
 			while((line = reader.readLine()) != null) {
 				String[] lineSplit = line.split("\\|");
 				
 				String id = lineSplit[0];
-				String ime = lineSplit[1];
-				String prezime = lineSplit[2];
-				String jmbg = lineSplit[3];
-				Pol pol = Pol.values()[Integer.parseInt(lineSplit[4])];
-				String adresa = lineSplit[5];
-				String brojTelefona = lineSplit[6];
-				String korisnickoIme = lineSplit[7];
-				String lozinka = lineSplit[8];
-				float plata = Float.parseFloat(lineSplit[9]);
-				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
+				String automobilovId = lineSplit[1];
+				String[] servisi = lineSplit[2].split(",");
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[3]);
 				
-				Administrator administrator = new Administrator(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, obrisan);
-				administratori.add(administrator);
+				ServisnaKnjizica servisnaKnjizica = new ServisnaKnjizica(id, automobilovId, servisi, obrisan);
+				servisneKnjizice.add(servisnaKnjizica);
 				
 			}
 			reader.close();
 		} catch (IOException e) {
-			System.out.println("Greska prilikom citanja administratora iz datoteke.");
+			System.out.println("Greska prilikom citanja korisnika iz datoteke.");
 			e.printStackTrace();
 		}
 		
-		return administratori;
+		return servisneKnjizice;
 	}
 	
 	public static Administrator ucitajAdministratora(String ulazniId) {
@@ -90,4 +82,5 @@ public class RadSaAdministratorima {
 			e.printStackTrace();
 		}
 	}
+
 }

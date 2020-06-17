@@ -3,6 +3,9 @@ package modeli;
 import java.util.ArrayList;
 
 import enumeracije.StatusServisa;
+import izlaz.RadSaAutomobilima;
+import izlaz.RadSaDelovima;
+import izlaz.RadSaServiserima;
 
 public class Servis {
 	
@@ -12,7 +15,6 @@ public class Servis {
 	private String termin;
 	private String opis;
 	private ArrayList<Deo> delovi;
-	private ServisnaKnjizica servisnaKnjizica;
 	private StatusServisa status;
 	private Boolean obrisan;
 	
@@ -24,21 +26,19 @@ public class Servis {
 		this.termin = "";
 		this.opis = "";
 		this.delovi = new ArrayList<Deo>();
-		this.servisnaKnjizica = null;
 		this.status = null;
 		this.obrisan = false;
 	}
 	
-	public Servis(String id, Automobil automobil, Serviser serviser, String termin, String opis,	
-				ServisnaKnjizica servisnaKnjizica, StatusServisa status, Boolean obrisan) {
+	public Servis(String id, String automobilovID, String serviserovId, String termin, String opis, String[] delovi, StatusServisa status, Boolean obrisan) {
 		super();
 		
 		this.id = id;
-		this.automobil = automobil;
-		this.serviser = serviser;
+		this.automobil = RadSaAutomobilima.ucitajAutomobil(automobilovID);
+		this.serviser = RadSaServiserima.ucitajServisera(serviserovId);
 		this.termin = termin;
 		this.opis = opis;
-		this.servisnaKnjizica = servisnaKnjizica;
+		this.delovi = RadSaDelovima.ucitajDelove(delovi);
 		this.status = status;
 		this.obrisan = obrisan;
 	}
@@ -55,12 +55,6 @@ public class Servis {
 	}
 	public void setStatus(StatusServisa status) {
 		this.status = status;
-	}
-	public ServisnaKnjizica getServisnaKnjizica() {
-		return servisnaKnjizica;
-	}
-	public void setServisnaKnjizica(ServisnaKnjizica servisnaKnjizica) {
-		this.servisnaKnjizica = servisnaKnjizica;
 	}
 	public Automobil getAutomobil() {
 		return automobil;
@@ -108,7 +102,6 @@ public class Servis {
 	@Override
 	public String toString() {
 		return "Servis [id=" + id + ", automobil=" + automobil + ", serviser=" + serviser + ", termin=" + termin
-				+ ", opis=" + opis + ", delovi=" + delovi + ", servisnaKnjizica=" + servisnaKnjizica + ", status="
-				+ status + "]";
+				+ ", opis=" + opis + ", delovi=" + delovi +  ", status=" + status + "]";
 	}
 }

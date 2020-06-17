@@ -2,6 +2,9 @@ package modeli;
 
 import java.util.ArrayList;
 
+import izlaz.RadSaAutomobilima;
+import izlaz.RadSaServisima;
+
 public class ServisnaKnjizica {
 
 	private String identifikator;
@@ -16,11 +19,11 @@ public class ServisnaKnjizica {
 		this.obrisan = false;
 	}
 	
-	public ServisnaKnjizica(String identifikator, Automobil automobil, ArrayList<Servis> servisi, Boolean obrisan) {
+	public ServisnaKnjizica(String identifikator, String automobilovId, String[] servisi, Boolean obrisan) {
 		super();
 		this.identifikator = identifikator;
-		this.automobil = automobil;
-		this.servisi = servisi;
+		this.automobil = RadSaAutomobilima.ucitajAutomobil(automobilovId);
+		this.servisi = RadSaServisima.ucitajServise(servisi);
 		this.obrisan = obrisan;
 	}
 
