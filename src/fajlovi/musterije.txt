@@ -1,2 +1,2 @@
-1|Nikola|Matosic|0105993190012|0|Radnicka 29|065552241|nikolam|12345|50|1
-2|Stefan|Jelkic|0104003190522|0|Radnicka 31|065512425|stefanj|12345|50|2
+1|Nikola|Matosic|0105993190012|0|Radnicka 29|065552241|nikolam|12345|50
+2|Stefan|Jelkic|0104003190522|0|Papa Pavla 17|065512425|stefanj|12345|50

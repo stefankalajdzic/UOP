@@ -2,6 +2,8 @@ package izlaz;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,12 +13,11 @@ import enumeracije.SpecijalizacijaServisera;
 import modeli.Serviser;
 
 
-public class UcitavanjeServisera {
+public class RadSaServiserima {
 
 	public static ArrayList<Serviser> ucitajServisere() {
 		
 		ArrayList<Serviser> serviseri = new ArrayList<Serviser>();
-		
 		
 		try {
 			File file = new File("src/fajlovi/serviseri.txt");
@@ -36,9 +37,9 @@ public class UcitavanjeServisera {
 				String lozinka = lineSplit[8];
 				float plata = Float.parseFloat(lineSplit[9]);
 				SpecijalizacijaServisera specijalizacija = SpecijalizacijaServisera.valueOf(lineSplit[10]);
+				
 				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, null);
 				serviseri.add(serviser);
-				
 			}
 			reader.close();
 		} catch (IOException e) {
@@ -47,6 +48,47 @@ public class UcitavanjeServisera {
 		}
 		
 		return serviseri;
+	}
+	
+	public static Serviser ucitajServisera(String ulazniId) {
+		ArrayList<Serviser> serviseri = RadSaServiserima.ucitajServisere();
+		for(Serviser serviser : serviseri) {
+			if(serviser.getId().equals(ulazniId)) {
+				return serviser;
+			}
+		}
+		
+		return null;
+	}
+	
+	public static void dodajServisera(Serviser serviser) {
+		try {
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/serviseri.txt", true);
+		    outputStream.write(serviser.toStringZaUpis().getBytes());
+		    outputStream.close();
+		}catch(IOException e) {
+			System.out.println("Greska prilikom upisa u datotoeku serviseri.txt");
+		}
+	}
+
+	public static void izmeniServisera(Serviser ulazniServiser) {
+		ArrayList<Serviser> serviseri = RadSaServiserima.ucitajServisere();
+		try {
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/serviseri.txt", false);
+			outputStream.write("".getBytes());
+			for (Serviser serviser : serviseri) {
+				if(serviser.getId().equals(ulazniServiser.getId())) {
+					outputStream.write(ulazniServiser.toStringZaUpis().getBytes());
+				} else {
+					outputStream.write(serviser.toStringZaUpis().getBytes());
+				}
+			}
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

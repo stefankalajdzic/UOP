@@ -59,5 +59,17 @@ public class Serviser extends Korisnik {
 				+ id + ", ime=" + ime + ", prezime=" + prezime + ", pol=" + pol + "]";
 	}
 	
-	
+	public String toStringZaUpis() {
+		return this.getId() + "|" +
+			   this.getIme() + "|" +
+			   this.getPrezime() + "|" +
+			   this.getJmbg() + "|" + 
+			   Integer.toString(this.getPol().ordinal()) + "|" +
+			   this.getAdresa() + "|" +
+			   this.getBrojTelefona() + "|" +
+			   this.getKorisnickoIme() + "|" + 
+			   this.getLozinka() + "|" +
+			   Float.toString(this.getPlata()) + "|" +
+			   Integer.toString(this.getSpecijalizacija().ordinal()) + "\n";
+ 	}
 }

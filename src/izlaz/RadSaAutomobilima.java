@@ -14,7 +14,7 @@ import modeli.Musterija;
 import modeli.ServisnaKnjizica;
 
 
-public class UcitavanjeAutomobila {
+public class RadSaAutomobilima {
 
 	public static ArrayList<Automobil> ucitajAutomobile() {
 		
