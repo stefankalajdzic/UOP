@@ -7,21 +7,22 @@ public class ServisnaKnjizica {
 	private String identifikator;
 	private Automobil automobil;
 	private ArrayList<Servis> servisi;
+	private Boolean obrisan;
 	
 	public ServisnaKnjizica() {
 		this.identifikator = "";
 		this.automobil = null;
 		this.servisi = new ArrayList<Servis>();
+		this.obrisan = false;
 	}
 	
-	public ServisnaKnjizica(String identifikator, Automobil automobil, ArrayList<Servis> servisi) {
+	public ServisnaKnjizica(String identifikator, Automobil automobil, ArrayList<Servis> servisi, Boolean obrisan) {
 		super();
 		this.identifikator = identifikator;
 		this.automobil = automobil;
 		this.servisi = servisi;
+		this.obrisan = obrisan;
 	}
-
-
 
 	public String getIdentifikator() {
 		return identifikator;
@@ -50,11 +51,17 @@ public class ServisnaKnjizica {
 		this.servisi = servisi;
 	}
 
+	public Boolean getObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(Boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
 	@Override
 	public String toString() {
 		return "ServisnaKnjizica [identifikator=" + identifikator + ", automobil=" + automobil + ", servisi=" + servisi
 				+ "]";
 	}
-	
-	
 }

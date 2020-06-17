@@ -20,8 +20,8 @@ public class Serviser extends Korisnik {
 
 	public Serviser(String id, String ime, String prezime, String jmbg, Pol pol, String adresa, String brojTelefona,
 			String korisnickoIme, String lozinka, float plata, SpecijalizacijaServisera specijalizacija,
-			ArrayList<Servis> servisi) {
-		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
+			ArrayList<Servis> servisi, Boolean obrisan) {
+		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, obrisan);
 		this.plata = plata;
 		this.specijalizacija = specijalizacija;
 		this.servisi = servisi;

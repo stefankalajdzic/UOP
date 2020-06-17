@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import enumeracije.Pol;
+import modeli.Automobil;
 import modeli.Musterija;
 
 
@@ -35,8 +36,9 @@ public class RadSaMusterijama {
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
 				int brojNagradnihBodova = Integer.parseInt(lineSplit[9]);
-				
-				Musterija musterija = new Musterija(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, brojNagradnihBodova, null);
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
+
+				Musterija musterija = new Musterija(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, brojNagradnihBodova, null, obrisan);
 				musterije.add(musterija);
 				
 			}
@@ -88,5 +90,18 @@ public class RadSaMusterijama {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static ArrayList<Automobil> ucitajMusterijineAutomobile(String musterijinId) {
+		ArrayList<Automobil> automobili = RadSaAutomobilima.ucitajAutomobile();
+		ArrayList<Automobil> musterijiniAutomobili = new ArrayList<Automobil>();
+		
+		for(Automobil automobil : automobili) {
+			if(automobil.getVlasnik().getId().equals(musterijinId)) {
+				musterijiniAutomobili.add(automobil);
+			}
+		}
+		
+		return musterijiniAutomobili;
 	}
 }

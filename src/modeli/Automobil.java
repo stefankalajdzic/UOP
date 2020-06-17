@@ -1,7 +1,9 @@
 package modeli;
 
+import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
+import izlaz.RadSaMusterijama;
 
 public class Automobil {
 
@@ -12,8 +14,9 @@ public class Automobil {
 	private String godinaProizvodnje;
 	private float zapreminaMotora;
 	private int snagaMotora;
-	private String vrstaGoriva;
+	private Gorivo vrstaGoriva;
 	private ServisnaKnjizica servisnaKnjizica;
+	private Boolean obrisan;
 	
 	public Automobil() {
 		
@@ -24,17 +27,17 @@ public class Automobil {
 		this.godinaProizvodnje = "";
 		this.zapreminaMotora = 0;
 		this.snagaMotora = 0;
-		this.vrstaGoriva = "";
+		this.vrstaGoriva = null;
 		this.servisnaKnjizica = null;
-		
+		this.obrisan = false;
 	}
 	
 	
-	public Automobil(String id, Musterija vlasnik, MarkaAutomobila marka, ModelAutomobila model, String godinaProizvodnje,
-			float zapreminaMotora, int snagaMotora, String vrstaGoriva, ServisnaKnjizica servisnaKnjizica) {
+	public Automobil(String id, String vlasnikId, MarkaAutomobila marka, ModelAutomobila model, String godinaProizvodnje,
+			float zapreminaMotora, int snagaMotora, Gorivo vrstaGoriva, ServisnaKnjizica servisnaKnjizica, Boolean obrisan) {
 		super();
 		this.id = id;
-		this.vlasnik = vlasnik;
+		this.vlasnik = RadSaMusterijama.ucitajMusteriju(vlasnikId);
 		this.marka = marka;
 		this.model = model;
 		this.godinaProizvodnje = godinaProizvodnje;
@@ -42,6 +45,7 @@ public class Automobil {
 		this.snagaMotora = snagaMotora;
 		this.vrstaGoriva = vrstaGoriva;
 		this.servisnaKnjizica = servisnaKnjizica;
+		this.obrisan = obrisan;
 	}
 	public ServisnaKnjizica getServisnaKnjizica() {
 		return servisnaKnjizica;
@@ -91,20 +95,36 @@ public class Automobil {
 	public void setSnagaMotora(int snagaMotora) {
 		this.snagaMotora = snagaMotora;
 	}
-	public String getVrstaGoriva() {
+	public Gorivo getVrstaGoriva() {
 		return vrstaGoriva;
 	}
-	public void setVrstaGoriva(String vrstaGoriva) {
+	public void setVrstaGoriva(Gorivo vrstaGoriva) {
 		this.vrstaGoriva = vrstaGoriva;
 	}
-
+	public Boolean getObrisan() {
+		return obrisan;
+	}
+	public void setObrisan(Boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	@Override
 	public String toString() {
-		return "Automobil [id=" + id + ", vlasnik=" + vlasnik + ", marka=" + marka + ", model=" + model
+		return "Automobil [id=" + id + ", vlasnik=" + vlasnik.ime + " " + vlasnik.prezime + ", marka=" + marka + ", model=" + model
 				+ ", godinaProizvodnje=" + godinaProizvodnje + ", zapreminaMotora=" + zapreminaMotora + ", snagaMotora="
 				+ snagaMotora + ", vrstaGoriva=" + vrstaGoriva + ", servisnaKnjizica=" + servisnaKnjizica + "]";
 	}
 	
-	
+	public String toStringZaUpis() {
+		return this.getId() + "|" +
+			   this.getVlasnik().getId() + "|" +
+			   Integer.toString(this.getMarka().ordinal()) + "|" +
+			   Integer.toString(this.getModel().ordinal()) + "|" +
+			   this.getGodinaProizvodnje() + "|" +
+			   this.getZapreminaMotora() + "|" +
+			   this.getSnagaMotora() + "|" +
+			   Integer.toString(this.getVrstaGoriva().ordinal()) + "|" +
+			   this.getServisnaKnjizica().getIdentifikator() + "|" +
+			   this.getObrisan() + "\n";
+	}
 }

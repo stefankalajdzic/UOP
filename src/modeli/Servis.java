@@ -14,6 +14,7 @@ public class Servis {
 	private ArrayList<Deo> delovi;
 	private ServisnaKnjizica servisnaKnjizica;
 	private StatusServisa status;
+	private Boolean obrisan;
 	
 	public Servis() {
 		
@@ -25,10 +26,11 @@ public class Servis {
 		this.delovi = new ArrayList<Deo>();
 		this.servisnaKnjizica = null;
 		this.status = null;
+		this.obrisan = false;
 	}
 	
 	public Servis(String id, Automobil automobil, Serviser serviser, String termin, String opis,	
-				ServisnaKnjizica servisnaKnjizica, StatusServisa status) {
+				ServisnaKnjizica servisnaKnjizica, StatusServisa status, Boolean obrisan) {
 		super();
 		
 		this.id = id;
@@ -38,7 +40,7 @@ public class Servis {
 		this.opis = opis;
 		this.servisnaKnjizica = servisnaKnjizica;
 		this.status = status;
-		
+		this.obrisan = obrisan;
 	}
 	public ArrayList<Deo> getDelovi() {
 		return delovi;
@@ -95,13 +97,18 @@ public class Servis {
 		this.id = id;
 	}
 
+	public Boolean getObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(Boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
 	@Override
 	public String toString() {
 		return "Servis [id=" + id + ", automobil=" + automobil + ", serviser=" + serviser + ", termin=" + termin
 				+ ", opis=" + opis + ", delovi=" + delovi + ", servisnaKnjizica=" + servisnaKnjizica + ", status="
 				+ status + "]";
 	}
-
-	
-	
 }

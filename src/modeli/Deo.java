@@ -13,6 +13,7 @@ public class Deo {
 	private String naziv;
 	private float cena;
 	private ArrayList<Servis> servisi;
+	private Boolean obrisan;
 	
 	public Deo() {
 		this.id = "";
@@ -21,9 +22,10 @@ public class Deo {
 		this.naziv = "";
 		this.cena = 0;
 		this.servisi = new ArrayList<Servis>();
+		this.obrisan = false;
 	}
 	
-	public Deo(String id, MarkaAutomobila marka, ModelAutomobila model, String naziv, float cena) {
+	public Deo(String id, MarkaAutomobila marka, ModelAutomobila model, String naziv, float cena, Boolean obrisan) {
 		super();
 		this.id = id;
 		this.marka = marka;
@@ -31,9 +33,9 @@ public class Deo {
 		this.naziv = naziv;
 		this.cena = cena;
 		this.servisi = new ArrayList<Servis>();
+		this.obrisan = obrisan;
 	}
 
-	
 	public String getId() {
 		return id;
 	}
@@ -75,6 +77,14 @@ public class Deo {
 	}
 	public void setCena(float cena) {
 		this.cena = cena;
+	}
+
+	public Boolean getObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(Boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 	@Override

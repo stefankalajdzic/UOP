@@ -37,8 +37,9 @@ public class RadSaServiserima {
 				String lozinka = lineSplit[8];
 				float plata = Float.parseFloat(lineSplit[9]);
 				SpecijalizacijaServisera specijalizacija = SpecijalizacijaServisera.valueOf(lineSplit[10]);
-				
-				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, null);
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[11]);
+
+				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, null, obrisan);
 				serviseri.add(serviser);
 			}
 			reader.close();

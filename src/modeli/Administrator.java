@@ -11,8 +11,8 @@ public class Administrator extends Korisnik {
 	}
 
 	public Administrator(String id, String ime, String prezime, String jmbg, Pol pol, String adresa, String brojTelefona,
-			String korisnickoIme, String lozinka, float plata) {
-		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
+			String korisnickoIme, String lozinka, float plata, Boolean obrisan) {
+		super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, obrisan);
 		this.plata = plata;
 	}
 
@@ -42,6 +42,7 @@ public class Administrator extends Korisnik {
 				this.getBrojTelefona() + "|" +
 				this.getKorisnickoIme() + "|" +
 				this.getLozinka() + "|" +
-				Float.toString(this.getPlata()) + "\n";
+				Float.toString(this.getPlata()) + "|" +
+				this.getObrisan() + "\n";
 	}
 }

@@ -35,8 +35,9 @@ public class RadSaAdministratorima {
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
 				float plata = Float.parseFloat(lineSplit[9]);
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
 				
-				Administrator administrator = new Administrator(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata);
+				Administrator administrator = new Administrator(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, obrisan);
 				administratori.add(administrator);
 				
 			}

@@ -22,8 +22,8 @@ public class Musterija extends Korisnik {
 
 	public Musterija(String id, String ime, String prezime, String jmbg, Pol pol, String adresa,
 				String brojTelefona, String korisnickoIme, String lozinka, int brojNagradnihBodova,
-				ArrayList<Automobil> automobili) {
-			super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka);
+				ArrayList<Automobil> automobili, Boolean obrisan) {
+			super(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, obrisan);
 			this.brojNagradnihBodova = brojNagradnihBodova;
 			this.automobili = automobili;
 		}
