@@ -1,15 +1,15 @@
 package izlaz;
 
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
-import enumeracije.Pol;
-import modeli.Administrator;
 import modeli.Deo;
 
 public class RadSaDelovima {
@@ -37,8 +37,23 @@ public class RadSaDelovima {
 			}
 			reader.close();
 		} catch (IOException e) {
-			System.out.println("Greska prilikom citanja administratora iz datoteke.");
+			System.out.println("Greska prilikom citanja dela iz datoteke.");
 			e.printStackTrace();
+		}
+		
+		return delovi;
+	}
+
+
+	public static ArrayList<Deo> ucitajDelove(String[] prosledjeniDelovi) {
+		List<String> prosledjeniDeloviLista = Arrays.asList(prosledjeniDelovi);
+		ArrayList<Deo> sviDelovi = RadSaDelovima.ucitajDelove();
+		ArrayList<Deo> delovi = new ArrayList<Deo>();
+		
+		for(Deo deo : sviDelovi) {
+			if(prosledjeniDeloviLista.contains(deo.getId())) {
+				delovi.add(deo);
+			}
 		}
 		
 		return delovi;

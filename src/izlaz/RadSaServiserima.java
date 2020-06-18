@@ -39,7 +39,7 @@ public class RadSaServiserima {
 				SpecijalizacijaServisera specijalizacija = SpecijalizacijaServisera.valueOf(lineSplit[10]);
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[11]);
 
-				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, null, obrisan);
+				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, obrisan);
 				serviseri.add(serviser);
 			}
 			reader.close();

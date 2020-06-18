@@ -7,32 +7,32 @@ import izlaz.RadSaServisima;
 
 public class ServisnaKnjizica {
 
-	private String identifikator;
+	private String id;
 	private Automobil automobil;
 	private ArrayList<Servis> servisi;
 	private Boolean obrisan;
 	
 	public ServisnaKnjizica() {
-		this.identifikator = "";
+		this.id = "";
 		this.automobil = null;
 		this.servisi = new ArrayList<Servis>();
 		this.obrisan = false;
 	}
 	
-	public ServisnaKnjizica(String identifikator, String automobilovId, String[] servisi, Boolean obrisan) {
+	public ServisnaKnjizica(String id, String automobilovId, String[] servisi, Boolean obrisan) {
 		super();
-		this.identifikator = identifikator;
+		this.id = id;
 		this.automobil = RadSaAutomobilima.ucitajAutomobil(automobilovId);
 		this.servisi = RadSaServisima.ucitajServise(servisi);
 		this.obrisan = obrisan;
 	}
 
-	public String getIdentifikator() {
-		return identifikator;
+	public String getId() {
+		return id;
 	}
 
-	public void setIdentifikator(String identifikator) {
-		this.identifikator = identifikator;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public ServisnaKnjizica(Automobil automobil) {
@@ -64,7 +64,7 @@ public class ServisnaKnjizica {
 
 	@Override
 	public String toString() {
-		return "ServisnaKnjizica [identifikator=" + identifikator + ", automobil=" + automobil + ", servisi=" + servisi
+		return "ServisnaKnjizica [identifikator=" + id + ", automobil=" + automobil + ", servisi=" + servisi
 				+ "]";
 	}
 }

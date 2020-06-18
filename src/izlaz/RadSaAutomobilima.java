@@ -37,7 +37,7 @@ public class RadSaAutomobilima {
 				int snagaMotora = Integer.parseInt(lineSplit[6]);
 				Gorivo vrstaGoriva = Gorivo.values()[Integer.parseInt(lineSplit[7])];
 				ServisnaKnjizica knjizica = new ServisnaKnjizica();
-				knjizica.setIdentifikator(lineSplit[8]);
+				knjizica.setId(lineSplit[8]);
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
 				
 				Automobil automobil = new Automobil(id, musterijinId, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva, knjizica, obrisan);

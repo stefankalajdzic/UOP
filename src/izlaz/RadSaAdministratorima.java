@@ -35,7 +35,7 @@ public class RadSaAdministratorima {
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
 				float plata = Float.parseFloat(lineSplit[9]);
-				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
 				
 				Administrator administrator = new Administrator(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, obrisan);
 				administratori.add(administrator);
@@ -66,7 +66,7 @@ public class RadSaAdministratorima {
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", true);
 		    outputStream.write(admin.toStringZaUpis().getBytes());
 		    outputStream.close();
-		}catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println("Greska prilikom upisa u datotoeku korisnici.txt");
 		}
 	}

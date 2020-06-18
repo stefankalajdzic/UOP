@@ -38,7 +38,7 @@ public class RadSaMusterijama {
 				int brojNagradnihBodova = Integer.parseInt(lineSplit[9]);
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[10]);
 
-				Musterija musterija = new Musterija(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, brojNagradnihBodova, null, obrisan);
+				Musterija musterija = new Musterija(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, brojNagradnihBodova, obrisan);
 				musterije.add(musterija);
 				
 			}

@@ -124,7 +124,7 @@ public class Automobil {
 			   this.getZapreminaMotora() + "|" +
 			   this.getSnagaMotora() + "|" +
 			   Integer.toString(this.getVrstaGoriva().ordinal()) + "|" +
-			   this.getServisnaKnjizica().getIdentifikator() + "|" +
+			   this.getServisnaKnjizica().getId() + "|" +
 			   this.getObrisan() + "\n";
 	}
 }
