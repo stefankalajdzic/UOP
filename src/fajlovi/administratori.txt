@@ -1,3 +1,2 @@
-<<<<<<< HEAD
 1|Ilija|Kalajdzic|0108955190012|1|Radnicka 25|065517239|ilijak|12345|90000.0|false
 2|Stefan|Kalajdzic|1508995181921|0|Gagarinova 13|0665585466|stefank|12345|90000.0|false
