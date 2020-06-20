@@ -22,7 +22,7 @@ public class Administrator extends Korisnik {
 		return plata;
 	}
 
-	public void setPlata(int plata) {
+	public void setPlata(float plata) {
 		this.plata = plata;
 	}
 

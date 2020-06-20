@@ -45,11 +45,9 @@ public class Servis {
 	public ArrayList<Deo> getDelovi() {
 		return delovi;
 	}
-
 	public void setDelovi(ArrayList<Deo> delovi) {
 		this.delovi = delovi;
 	}
-
 	public StatusServisa getStatus() {
 		return status;
 	}
@@ -68,33 +66,27 @@ public class Servis {
 	public void setServiser(Serviser serviser) {
 		this.serviser = serviser;
 	}
-	
 	public String getTermin() {
 		return termin;
 	}
-
 	public void setTermin(String termin) {
 		this.termin = termin;
 	}
-
 	public String getOpis() {
 		return opis;
 	}
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public Boolean getObrisan() {
 		return obrisan;
 	}
-
 	public void setObrisan(Boolean obrisan) {
 		this.obrisan = obrisan;
 	}
@@ -103,5 +95,24 @@ public class Servis {
 	public String toString() {
 		return "Servis [id=" + id + ", automobil=" + automobil + ", serviser=" + serviser + ", termin=" + termin
 				+ ", opis=" + opis + ", delovi=" + delovi +  ", status=" + status + "]";
+	}
+	
+	public String toStringDelovi() {
+		ArrayList<String> delovi = new ArrayList<String>();
+		for(Deo deo : this.delovi) {
+			delovi.add(deo.getId());
+		}
+		return String.join(",", delovi);
+	}
+	
+	public String toStringZaUpis() {
+		return this.getId() + "|" +
+			   this.getAutomobil().getId() + "|" +
+			   this.getServiser().getId() + "|" +
+			   this.getTermin() + "|" +
+			   this.getOpis() + "|" +
+			   this.toStringDelovi() + "|" +
+			   this.getStatus().ordinal() + "|" +
+			   this.getObrisan() + "\n";
 	}
 }

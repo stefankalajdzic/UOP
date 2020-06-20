@@ -3,35 +3,45 @@ package ekrani;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import izlaz.RadSaServisnimKnjizicama;
+import model.Servis;
 import model.ServisnaKnjizica;
 
 public class ServisneKnjiziceTabela extends JTable {
 	
-	// Lista servisa izostavljena
-	private static String[] kolone = { "ID", "ID Auta", "Obrisan" };
-	
-	private static Object[][] podaci = formatirajPodatke();
+	private static DefaultTableModel model;
+	private static String[] kolone = { "ID", "ID Auta", "ID Servisa", "Obrisan" };
 	
 	public ServisneKnjiziceTabela() {
-		super(podaci, kolone);
-		
+		super();
+		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
 		
 	}
+
+	public void osveziTabelu() {
+		DefaultTableModel dm = (DefaultTableModel) this.getModel();
+		for(int i = this.getRowCount() - 1; i >= 0; i--) {
+			dm.removeRow(i);
+		}
+		
+		postaviPodatke();
+	}
 	
-	private static Object[][] formatirajPodatke() {
+	private void postaviPodatke() {
 		ArrayList<ServisnaKnjizica> servisneKnjizice = RadSaServisnimKnjizicama.ucitajServisneKnjizice();
-		Object[][] formatiraniPodaci = new Object[servisneKnjizice.size()][];
+		model = new DefaultTableModel(kolone, 0);
 		for(int i = 0; i < servisneKnjizice.size(); i++) {
 			ServisnaKnjizica servisnaKnjizica = servisneKnjizice.get(i);
-			formatiraniPodaci[i] = new Object[] {
+			model.addRow(new Object[] {
 					servisnaKnjizica.getId(),
 					servisnaKnjizica.getAutomobil().getId(),
+					servisnaKnjizica.toStringServisi(),
 					servisnaKnjizica.getObrisan()
-			};
+			});
 		}
-		return formatiraniPodaci;
+		this.setModel(model);
 	}
 }

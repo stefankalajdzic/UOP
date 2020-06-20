@@ -20,9 +20,9 @@ public class AdministratoriTabela extends JTable {
 									   "Br. Tel.", "Korisnicko ime",
 									   "Lozinka", "Plata", "Obrisan",
 									 };
-//	private static Object[][] podaci = formatirajPodatke();
 	
 	public AdministratoriTabela() {
+		super();
 		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
 	}

@@ -36,11 +36,9 @@ public class RadSaAutomobilima {
 				float zapreminaMotora = Float.parseFloat(lineSplit[5]);
 				int snagaMotora = Integer.parseInt(lineSplit[6]);
 				Gorivo vrstaGoriva = Gorivo.values()[Integer.parseInt(lineSplit[7])];
-				ServisnaKnjizica knjizica = new ServisnaKnjizica();
-				knjizica.setId(lineSplit[8]);
-				Boolean obrisan = Boolean.parseBoolean(lineSplit[9]);
+				Boolean obrisan = Boolean.parseBoolean(lineSplit[8]);
 				
-				Automobil automobil = new Automobil(id, musterijinId, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva, knjizica, obrisan);
+				Automobil automobil = new Automobil(id, musterijinId, marka, model, godinaProizvodnje, zapreminaMotora, snagaMotora, vrstaGoriva, obrisan);
 				automobili.add(automobil);
 				
 			}
@@ -64,14 +62,28 @@ public class RadSaAutomobilima {
 		return null;
 	}
 
-	public static void dodajAutomobil(Automobil automobil) {
+	public static void dodajAutomobil(Automobil ulazniAutomobil) {
 		try {
+			int id = 0;
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/automobili.txt", true);
-		    outputStream.write(automobil.toStringZaUpis().getBytes());
+			ArrayList<Automobil> automobili = ucitajAutomobile();
+			
+			for(Automobil automobil : automobili) {
+				int trenutniId = Integer.parseInt(automobil.getId());
+				if(trenutniId > id) {
+					id = trenutniId;
+				}
+			}
+			
+			id++;
+			
+			ulazniAutomobil.setId(Integer.toString(id));
+		   
+			outputStream.write(ulazniAutomobil.toStringZaUpis().getBytes());
 		    outputStream.close();
 		}catch(IOException e) {
 			System.out.println("Greska prilikom upisa u datotoeku automobili.txt");
-		}
+		}		
 	}
 	
 	public static void izmeniAutomobil(Automobil ulazniAutomobil) {

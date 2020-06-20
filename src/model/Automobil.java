@@ -4,6 +4,7 @@ import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import izlaz.RadSaMusterijama;
+import izlaz.RadSaServisnimKnjizicama;
 
 public class Automobil {
 
@@ -15,7 +16,6 @@ public class Automobil {
 	private float zapreminaMotora;
 	private int snagaMotora;
 	private Gorivo vrstaGoriva;
-	private ServisnaKnjizica servisnaKnjizica;
 	private Boolean obrisan;
 	
 	public Automobil() {
@@ -28,13 +28,12 @@ public class Automobil {
 		this.zapreminaMotora = 0;
 		this.snagaMotora = 0;
 		this.vrstaGoriva = null;
-		this.servisnaKnjizica = null;
 		this.obrisan = false;
 	}
 	
 	
 	public Automobil(String id, String vlasnikId, MarkaAutomobila marka, ModelAutomobila model, String godinaProizvodnje,
-			float zapreminaMotora, int snagaMotora, Gorivo vrstaGoriva, ServisnaKnjizica servisnaKnjizica, Boolean obrisan) {
+			float zapreminaMotora, int snagaMotora, Gorivo vrstaGoriva, Boolean obrisan) {
 		super();
 		this.id = id;
 		this.vlasnik = RadSaMusterijama.ucitajMusteriju(vlasnikId);
@@ -44,15 +43,9 @@ public class Automobil {
 		this.zapreminaMotora = zapreminaMotora;
 		this.snagaMotora = snagaMotora;
 		this.vrstaGoriva = vrstaGoriva;
-		this.servisnaKnjizica = servisnaKnjizica;
 		this.obrisan = obrisan;
 	}
-	public ServisnaKnjizica getServisnaKnjizica() {
-		return servisnaKnjizica;
-	}
-	public void setServisnaKnjizica(ServisnaKnjizica servisnaKnjizica) {
-		this.servisnaKnjizica = servisnaKnjizica;
-	}
+	
 	public String getId() {
 		return id;
 	}
@@ -112,7 +105,7 @@ public class Automobil {
 	public String toString() {
 		return "Automobil [id=" + id + ", vlasnik=" + vlasnik.ime + " " + vlasnik.prezime + ", marka=" + marka + ", model=" + model
 				+ ", godinaProizvodnje=" + godinaProizvodnje + ", zapreminaMotora=" + zapreminaMotora + ", snagaMotora="
-				+ snagaMotora + ", vrstaGoriva=" + vrstaGoriva + ", servisnaKnjizica=" + servisnaKnjizica + "]";
+				+ snagaMotora + ", vrstaGoriva=" + vrstaGoriva + "]";
 	}
 	
 	public String toStringZaUpis() {
@@ -124,7 +117,6 @@ public class Automobil {
 			   this.getZapreminaMotora() + "|" +
 			   this.getSnagaMotora() + "|" +
 			   Integer.toString(this.getVrstaGoriva().ordinal()) + "|" +
-			   this.getServisnaKnjizica().getId() + "|" +
 			   this.getObrisan() + "\n";
 	}
 }

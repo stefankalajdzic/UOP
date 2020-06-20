@@ -2,10 +2,16 @@ package izlaz;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import enumeracije.StatusServisa;
+import model.Administrator;
 import model.Servis;
 
 public class RadSaServisima {
@@ -41,8 +47,72 @@ public class RadSaServisima {
 		return servisi;
 	}
 	
-	public static ArrayList<Servis> ucitajServise(String[] idServisa) {
+	public static ArrayList<Servis> ucitajServise(String[] ulazniServisi) {
+		List<String> prosledjeniServisiLista = Arrays.asList(ulazniServisi);
+		ArrayList<Servis> sviServisi = ucitajServise();
+		ArrayList<Servis> servisi = new ArrayList<Servis>();
+		
+		for(Servis servis : sviServisi) {
+			if(prosledjeniServisiLista.contains(servis.getId())) {
+				servisi.add(servis);
+			}
+		}
+		
+		return servisi;
+	}
+	
+	public static Servis ucitajServis(String ulazniId) {
+		ArrayList<Servis> servisi = ucitajServise();
+		for(Servis servis : servisi) {
+			if(servis.getId().equals(ulazniId)) {
+				return servis;
+			}
+		}
 		
 		return null;
+	}
+	
+	public static void dodajServis(Servis ulazniServis) {
+		try {
+			int id = 0;
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/servisi.txt", true);
+			ArrayList<Servis> servisi = ucitajServise();
+			
+			for(Servis servis : servisi) {
+				int trenutniId = Integer.parseInt(servis.getId());
+				if(trenutniId > id) {
+					id = trenutniId;
+				}
+			}
+			
+			id++;
+			
+			ulazniServis.setId(Integer.toString(id));
+		   
+			outputStream.write(ulazniServis.toStringZaUpis().getBytes());
+		    outputStream.close();
+		}catch(IOException e) {
+			System.out.println("Greska prilikom upisa u datotoeku servisi.txt");
+		}		
+	}
+	
+	public static void izmeniServis(Servis ulazniServis) {
+		ArrayList<Servis> servisi = ucitajServise();
+		try {
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/servisi.txt", false);
+			outputStream.write("".getBytes());
+			for (Servis servis : servisi) {
+				if(servis.getId().equals(ulazniServis.getId())) {
+					outputStream.write(ulazniServis.toStringZaUpis().getBytes());
+				} else {
+					outputStream.write(servis.toStringZaUpis().getBytes());
+				}
+			}
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

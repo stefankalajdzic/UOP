@@ -44,9 +44,8 @@ public class RadSaDelovima {
 		return delovi;
 	}
 
-
-	public static ArrayList<Deo> ucitajDelove(String[] prosledjeniDelovi) {
-		List<String> prosledjeniDeloviLista = Arrays.asList(prosledjeniDelovi);
+	public static ArrayList<Deo> ucitajDelove(String[] ulazniDelovi) {
+		List<String> prosledjeniDeloviLista = Arrays.asList(ulazniDelovi);
 		ArrayList<Deo> sviDelovi = RadSaDelovima.ucitajDelove();
 		ArrayList<Deo> delovi = new ArrayList<Deo>();
 		

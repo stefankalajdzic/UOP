@@ -5,32 +5,40 @@ import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import izlaz.RadSaAutomobilima;
 import model.Automobil;
 
 public class AutomobiliTabela extends JTable {
 	
+	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "Vlasnik", "Marka",
 									   "Model", "Godina proizvodnje", "Zapremina motora", 
-							   		   "Snaga motora", "Vrsta goriva","S. Knjizica", "Obrisan"
+							   		   "Snaga motora", "Vrsta goriva", "Obrisan"
 							   		   };
 	
-	private static Object[][] podaci = formatirajPodatke();
-	
 	public AutomobiliTabela() {
-		super(podaci, kolone);
-		
+		super();
+		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
-		
 	}
 	
-	private static Object[][] formatirajPodatke() {
+	public void osveziTabelu() {
+		DefaultTableModel dm = (DefaultTableModel) this.getModel();
+		for(int i = this.getRowCount() - 1; i >= 0; i--) {
+			dm.removeRow(i);
+		}
+		
+		postaviPodatke();
+	}
+	
+	private void postaviPodatke() {
 		ArrayList<Automobil> automobili = RadSaAutomobilima.ucitajAutomobile();
-		Object[][] formatiraniPodaci = new Object[automobili.size()][];
+		model = new DefaultTableModel(kolone, 0);
 		for(int i = 0; i < automobili.size(); i++) {
 			Automobil auto = automobili.get(i);
-			formatiraniPodaci[i] = new Object[] {
+			model.addRow(new Object[] {
 					auto.getId(),
 					auto.getVlasnik().getId() + "|" + auto.getVlasnik().getIme() + " " + auto.getVlasnik().getPrezime(),
 					auto.getMarka(),
@@ -39,10 +47,9 @@ public class AutomobiliTabela extends JTable {
 					auto.getZapreminaMotora(),
 					auto.getSnagaMotora(),
 					auto.getVrstaGoriva(),
-					auto.getServisnaKnjizica().getId(),
 					auto.getObrisan()
-			};	
+			});	
 		}
-		return formatiraniPodaci;
+		this.setModel(model);
 	}
 }

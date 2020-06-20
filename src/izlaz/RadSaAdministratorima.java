@@ -63,21 +63,26 @@ public class RadSaAdministratorima {
 	
 	public static void dodajAdministratora(Administrator ulazniAdministrator) {
 		try {
+			int id = 0;
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", true);
 			ArrayList<Administrator> administratori = ucitajAdministratore();
-			int id = 0;
+			
 			for(Administrator administrator : administratori) {
 				int trenutniId = Integer.parseInt(administrator.getId());
 				if(trenutniId > id) {
 					id = trenutniId;
 				}
-				ulazniAdministrator.setId(Integer.toString(id + 1));
 			}
-		    outputStream.write(ulazniAdministrator.toStringZaUpis().getBytes());
+			
+			id++;
+			
+			ulazniAdministrator.setId(Integer.toString(id));
+		    
+			outputStream.write(ulazniAdministrator.toStringZaUpis().getBytes());
 		    outputStream.close();
 		} catch(IOException e) {
 			System.out.println("Greska prilikom upisa u datotoeku administratori.txt");
-		}
+		}		
 	}
 	
 	public static void izmeniAdministratora(Administrator ulazniAdministrator) {

@@ -6,14 +6,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -26,7 +23,7 @@ public class AdministratorEkran extends JDialog {
 	private Administrator administrator;
 	
 	private JTextField id, ime, prezime, jmbg, 
-		adresa, brojTelefona, korisnickoIme, lozinka, plata;
+		adresa, brojTelefona, korisnickoIme, lozinka, plataAdministratora;
 	private JComboBox<String> pol;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
@@ -34,7 +31,7 @@ public class AdministratorEkran extends JDialog {
 	public AdministratorEkran(Administrator administrator) {
 		super(null, "Administrator", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
-		this.setSize(new Dimension(300, 400));
+		this.setSize(new Dimension(300, 365));
 		this.setLocationRelativeTo(null);
 		
 		id = new JTextField();
@@ -46,7 +43,7 @@ public class AdministratorEkran extends JDialog {
 		brojTelefona = new JTextField();
 		korisnickoIme = new JTextField();
 		lozinka = new JTextField();
-		plata = new JTextField();
+		plataAdministratora = new JTextField();
 		obrisan = new JCheckBox();
 		
 		potvrdi = new JButton("Potvrdi");
@@ -65,7 +62,7 @@ public class AdministratorEkran extends JDialog {
 	
 	private void postaviElemente() {
 
-		GridLayout gl = new GridLayout(11, 2);
+		GridLayout gl = new GridLayout(12, 2);
 		this.setLayout(gl);
 		
 		this.add(new JLabel("ID: ", SwingConstants.RIGHT));
@@ -96,6 +93,9 @@ public class AdministratorEkran extends JDialog {
 		this.add(new JLabel("Lozinka: ", SwingConstants.RIGHT));
 		this.add(lozinka);
 		
+		this.add(new JLabel("Plata: ", SwingConstants.RIGHT));
+		this.add(plataAdministratora);
+		
 		this.add(new JLabel("Obrisan: ", SwingConstants.RIGHT));
 		this.add(obrisan);
 		
@@ -113,6 +113,7 @@ public class AdministratorEkran extends JDialog {
 		brojTelefona.setText(administrator.getBrojTelefona());
 		korisnickoIme.setText(administrator.getKorisnickoIme());
 		lozinka.setText(administrator.getLozinka());
+		plataAdministratora.setText(Float.toString(administrator.getPlata()));
 		obrisan.setSelected(administrator.getObrisan());
 	}
 	
@@ -126,6 +127,10 @@ public class AdministratorEkran extends JDialog {
 					administrator = new Administrator();
 					izmena = false;
 				}
+				Float plata = (float) 0.0;
+				try {
+					plata = Float.parseFloat(plataAdministratora.getText());
+				} catch (Exception ex) { }
 				
 				administrator.setIme(ime.getText());
 				administrator.setPrezime(prezime.getText());
@@ -135,6 +140,7 @@ public class AdministratorEkran extends JDialog {
 				administrator.setBrojTelefona(brojTelefona.getText());
 				administrator.setKorisnickoIme(korisnickoIme.getText());
 				administrator.setLozinka(lozinka.getText());
+				administrator.setPlata(plata);
 				administrator.setObrisan(obrisan.isSelected());
 				
 				if(izmena) {
@@ -146,6 +152,7 @@ public class AdministratorEkran extends JDialog {
 				ugasi();
 			}
 		});
+		
 		this.odustani.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -42,37 +42,51 @@ public class RadSaServisnimKnjizicama {
 		return servisneKnjizice;
 	}
 	
-	public static Administrator ucitajAdministratora(String ulazniId) {
-		ArrayList<Administrator> administratori = RadSaAdministratorima.ucitajAdministratore();
-		for(Administrator administrator : administratori) {
-			if(administrator.getId().equals(ulazniId)) {
-				return administrator;
+	public static ServisnaKnjizica ucitajServisnuKnjizicu(String ulazniId) {
+		ArrayList<ServisnaKnjizica> servisneKnjizice = ucitajServisneKnjizice();
+		for(ServisnaKnjizica servisnaKnjizica : servisneKnjizice) {
+			if(servisnaKnjizica.getId().equals(ulazniId)) {
+				return servisnaKnjizica;
 			}
 		}
 		
 		return null;
 	}
 	
-	public static void dodajAdministratora(Administrator admin) {
+	public static void dodajServisnuKnjizicu(ServisnaKnjizica ulaznaServisnaKnjizica) {
 		try {
-			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", true);
-		    outputStream.write(admin.toStringZaUpis().getBytes());
+			int id = 0;
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/servisneknjizice.txt", true);
+			ArrayList<ServisnaKnjizica> servisneKnjizice = ucitajServisneKnjizice();
+			
+			for(ServisnaKnjizica servisnaKnjizica : servisneKnjizice) {
+				int trenutniId = Integer.parseInt(servisnaKnjizica.getId());
+				if(trenutniId > id) {
+					id = trenutniId;
+				}
+			}
+			
+			id++;
+			
+			ulaznaServisnaKnjizica.setId(Integer.toString(id));
+			
+		    outputStream.write(ulaznaServisnaKnjizica.toStringZaUpis().getBytes());
 		    outputStream.close();
-		}catch(IOException e) {
-			System.out.println("Greska prilikom upisa u datotoeku korisnici.txt");
+		} catch(IOException e) {
+			System.out.println("Greska prilikom upisa u datotoeku servisneknjizice.txt");
 		}
-	}
+}
 	
-	public static void izmeniAdministratora(Administrator ulazniAdministrator) {
-		ArrayList<Administrator> administratori = RadSaAdministratorima.ucitajAdministratore();
+	public static void izmeniServisnuKnjizicu(ServisnaKnjizica ulaznaServisnaKnjizica) {
+		ArrayList<ServisnaKnjizica> servisneKnjizice = ucitajServisneKnjizice();
 		try {
-			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", false);
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/servisneknjizice.txt", false);
 			outputStream.write("".getBytes());
-			for (Administrator administrator : administratori) {
-				if(administrator.getId().equals(ulazniAdministrator.getId())) {
-					outputStream.write(ulazniAdministrator.toStringZaUpis().getBytes());
+			for (ServisnaKnjizica servisnaKnjizica : servisneKnjizice) {
+				if(servisnaKnjizica.getId().equals(ulaznaServisnaKnjizica.getId())) {
+					outputStream.write(ulaznaServisnaKnjizica.toStringZaUpis().getBytes());
 				} else {
-					outputStream.write(administrator.toStringZaUpis().getBytes());
+					outputStream.write(servisnaKnjizica.toStringZaUpis().getBytes());
 				}
 			}
 			outputStream.close();
