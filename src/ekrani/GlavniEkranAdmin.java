@@ -1,6 +1,5 @@
 package ekrani;
 
-import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -8,14 +7,22 @@ import javax.swing.JViewport;
 
 import izlaz.RadSaAdministratorima;
 import izlaz.RadSaAutomobilima;
+import izlaz.RadSaDelovima;
+import izlaz.RadSaMusterijama;
+import izlaz.RadSaServiserima;
 import izlaz.RadSaServisima;
 import izlaz.RadSaServisnimKnjizicama;
 import model.Administrator;
 import model.Automobil;
+import model.Deo;
+import model.Musterija;
 import model.Servis;
+import model.Serviser;
 import model.ServisnaKnjizica;
 
 public class GlavniEkranAdmin extends JTabbedPane {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private AutomobiliTabela automobiliTabela;
 	private JScrollPane automobiliTabelaWraper;
@@ -101,14 +108,23 @@ public class GlavniEkranAdmin extends JTabbedPane {
 				
 			// Delovi
 			case 3:
+				new DeoEkran(null);
+				
+				deloviTabela.osveziTabelu();
 				break;
 				
 			// Musterije
 			case 4:
+				new MusterijaEkran(null);
+				
+				musterijeTabela.osveziTabelu();
 				break;
 				
 			// Serviseri
 			case 5:
+				new ServiserEkran(null);
+				
+				serviseriTabela.osveziTabelu();
 				break;
 				
 			// Administratori
@@ -144,6 +160,7 @@ public class GlavniEkranAdmin extends JTabbedPane {
 					servisiTabela.osveziTabelu();
 					servisneKnjiziceTabela.osveziTabelu();
 				}
+				
 				break;
 				
 			// Servisi
@@ -151,23 +168,47 @@ public class GlavniEkranAdmin extends JTabbedPane {
 				if(row != -1) { 
 					String id = (String)servisiTabela.getModel().getValueAt(row, 0);
 					Servis servis = RadSaServisima.ucitajServis(id);
-					
 					new ServisEkran(servis);
 					
 					servisiTabela.osveziTabelu();
 				}
+				
 				break;
 				
 			// Delovi
 			case 3:
+				if(row != -1) {
+					String id = (String)deloviTabela.getModel().getValueAt(row, 0);
+					Deo deo = RadSaDelovima.ucitajDeo(id);
+					new DeoEkran(deo);
+					
+					deloviTabela.osveziTabelu();
+				}
+				
 				break;
 				
 			// Musterije
 			case 4:
+				if(row != -1) {
+					String id = (String)musterijeTabela.getModel().getValueAt(row, 0);
+					Musterija musterija = RadSaMusterijama.ucitajMusteriju(id);
+					new MusterijaEkran(musterija);
+					
+					musterijeTabela.osveziTabelu();
+				}
+				
 				break;
 				
 			// Serviseri
 			case 5:
+				if(row != -1) {
+					String id = (String)serviseriTabela.getModel().getValueAt(row, 0);
+					Serviser serviser = RadSaServiserima.ucitajServisera(id);
+					new ServiserEkran(serviser);
+					
+					serviseriTabela.osveziTabelu();
+				}
+				
 				break;
 				
 			// Administratori

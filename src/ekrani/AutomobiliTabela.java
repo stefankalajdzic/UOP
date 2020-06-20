@@ -1,8 +1,6 @@
 package ekrani;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -11,6 +9,8 @@ import izlaz.RadSaAutomobilima;
 import model.Automobil;
 
 public class AutomobiliTabela extends JTable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "Vlasnik", "Marka",

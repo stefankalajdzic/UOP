@@ -15,23 +15,23 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import enumeracije.Pol;
-import izlaz.RadSaAdministratorima;
-import model.Administrator;
+import izlaz.RadSaMusterijama;
+import model.Musterija;
 
-public class AdministratorEkran extends JDialog {
-	
+public class MusterijaEkran extends JDialog {
+
 	private static final long serialVersionUID = 1L;
 
-	private Administrator administrator;
+	private Musterija musterija;
 	
 	private JTextField id, ime, prezime, jmbg, 
-		adresa, brojTelefona, korisnickoIme, lozinka, plataAdministratora;
+		adresa, brojTelefona, korisnickoIme, lozinka, brojBodova;
 	private JComboBox<Pol> pol;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public AdministratorEkran(Administrator administrator) {
-		super(null, "Administrator", Dialog.ModalityType.DOCUMENT_MODAL);
+	public MusterijaEkran(Musterija musterija) {
+		super(null, "Musterija", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
 		this.setSize(new Dimension(300, 365));
 		this.setLocationRelativeTo(null);
@@ -45,7 +45,7 @@ public class AdministratorEkran extends JDialog {
 		brojTelefona = new JTextField();
 		korisnickoIme = new JTextField();
 		lozinka = new JTextField();
-		plataAdministratora = new JTextField();
+		brojBodova = new JTextField();
 		obrisan = new JCheckBox();
 		
 		potvrdi = new JButton("Potvrdi");
@@ -54,8 +54,8 @@ public class AdministratorEkran extends JDialog {
 		postaviElemente();
 		postaviFunkcionalnosti();
 		
-		if(administrator != null) {
-			this.administrator = administrator;
+		if(musterija != null) {
+			this.musterija = musterija;
 			popuniPodatke();
 		}
 		
@@ -95,8 +95,8 @@ public class AdministratorEkran extends JDialog {
 		this.add(new JLabel("Lozinka: ", SwingConstants.RIGHT));
 		this.add(lozinka);
 		
-		this.add(new JLabel("Plata: ", SwingConstants.RIGHT));
-		this.add(plataAdministratora);
+		this.add(new JLabel("Broj bodova: ", SwingConstants.RIGHT));
+		this.add(brojBodova);
 		
 		this.add(new JLabel("Obrisan: ", SwingConstants.RIGHT));
 		this.add(obrisan);
@@ -106,17 +106,17 @@ public class AdministratorEkran extends JDialog {
 	}
 	
 	private void popuniPodatke() {
-		id.setText(administrator.getId());
-		ime.setText(administrator.getIme());
-		prezime.setText(administrator.getPrezime());
-		jmbg.setText(administrator.getJmbg());
-		pol.setSelectedIndex(administrator.getPol().ordinal());
-		adresa.setText(administrator.getAdresa());
-		brojTelefona.setText(administrator.getBrojTelefona());
-		korisnickoIme.setText(administrator.getKorisnickoIme());
-		lozinka.setText(administrator.getLozinka());
-		plataAdministratora.setText(Float.toString(administrator.getPlata()));
-		obrisan.setSelected(administrator.getObrisan());
+		id.setText(musterija.getId());
+		ime.setText(musterija.getIme());
+		prezime.setText(musterija.getPrezime());
+		jmbg.setText(musterija.getJmbg());
+		pol.setSelectedIndex(musterija.getPol().ordinal());
+		adresa.setText(musterija.getAdresa());
+		brojTelefona.setText(musterija.getBrojTelefona());
+		korisnickoIme.setText(musterija.getKorisnickoIme());
+		lozinka.setText(musterija.getLozinka());
+		brojBodova.setText(Integer.toString(musterija.getBrojNagradnihBodova()));
+		obrisan.setSelected(musterija.getObrisan());
 	}
 	
 	private void postaviFunkcionalnosti() {
@@ -125,30 +125,30 @@ public class AdministratorEkran extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Boolean izmena = true;
 				
-				if(administrator == null) {
-					administrator = new Administrator();
+				if(musterija == null) {
+					musterija = new Musterija();
 					izmena = false;
 				}
-				Float plata = (float) 0.0;
+				int brojNagradnihBodova = 0;
 				try {
-					plata = Float.parseFloat(plataAdministratora.getText());
+					brojNagradnihBodova = Integer.parseInt(brojBodova.getText());
 				} catch (Exception ex) { }
 				
-				administrator.setIme(ime.getText());
-				administrator.setPrezime(prezime.getText());
-				administrator.setJmbg(jmbg.getText());
-				administrator.setPol(Pol.values()[pol.getSelectedIndex()]);
-				administrator.setAdresa(adresa.getText());
-				administrator.setBrojTelefona(brojTelefona.getText());
-				administrator.setKorisnickoIme(korisnickoIme.getText());
-				administrator.setLozinka(lozinka.getText());
-				administrator.setPlata(plata);
-				administrator.setObrisan(obrisan.isSelected());
+				musterija.setIme(ime.getText());
+				musterija.setPrezime(prezime.getText());
+				musterija.setJmbg(jmbg.getText());
+				musterija.setPol(Pol.values()[pol.getSelectedIndex()]);
+				musterija.setAdresa(adresa.getText());
+				musterija.setBrojTelefona(brojTelefona.getText());
+				musterija.setKorisnickoIme(korisnickoIme.getText());
+				musterija.setLozinka(lozinka.getText());
+				musterija.setBrojNagradnihBodova(brojNagradnihBodova);
+				musterija.setObrisan(obrisan.isSelected());
 				
 				if(izmena) {
-					RadSaAdministratorima.izmeniAdministratora(administrator);
+					RadSaMusterijama.izmeniMusteriju(musterija);
 				} else {
-					RadSaAdministratorima.dodajAdministratora(administrator);
+					RadSaMusterijama.dodajMusteriju(musterija);
 				}
 				
 				ugasi();

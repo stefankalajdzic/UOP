@@ -3,35 +3,45 @@ package ekrani;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-import izlaz.RadSaAdministratorima;
 import izlaz.RadSaServiserima;
-import model.Administrator;
 import model.Serviser;
 
 public class ServiseriTabela extends JTable {
 	
+	private static final long serialVersionUID = 1L;
+	
+	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "Ime", "Prezime",
 									   "JMBG", "Pol", "Adresa",
 									   "Br. Tel.", "Korisnicko ime",
 									   "Lozinka", "Spec.", "Plata",
 									   "Obrisan"
 									 };
-	private static Object[][] podaci = formatirajPodatke();
 	
 	public ServiseriTabela() {
-		super(podaci, kolone);
-		
+		super();
+		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
 		
 	}
-	
-	private static Object[][] formatirajPodatke() {
+
+	public void osveziTabelu() {
+		DefaultTableModel dm = (DefaultTableModel) this.getModel();
+		for(int i = this.getRowCount() - 1; i >= 0; i-- ) {
+			dm.removeRow(i);
+		}
+		
+		postaviPodatke();
+	}
+
+	private void postaviPodatke() {
 		ArrayList<Serviser> serviseri = RadSaServiserima.ucitajServisere();
-		Object[][] formatiraniPodaci = new Object[serviseri.size()][];
+		model = new DefaultTableModel(kolone, 0);
 		for(int i = 0; i < serviseri.size(); i++) {
 			Serviser serviser = serviseri.get(i);
-			formatiraniPodaci[i] = new Object[] {
+			model.addRow(new Object[] {
 					serviser.getId(),
 					serviser.getIme(),
 					serviser.getPrezime(),
@@ -44,8 +54,8 @@ public class ServiseriTabela extends JTable {
 					serviser.getSpecijalizacija(),
 					serviser.getPlata(),
 					serviser.getObrisan()
-			};
+			});
 		}
-		return formatiraniPodaci;
+		this.setModel(model);
 	}
 }

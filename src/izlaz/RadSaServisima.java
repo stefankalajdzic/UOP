@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import enumeracije.StatusServisa;
-import model.Administrator;
 import model.Servis;
 
 public class RadSaServisima {

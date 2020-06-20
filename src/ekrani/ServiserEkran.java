@@ -15,25 +15,27 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import enumeracije.Pol;
-import izlaz.RadSaAdministratorima;
-import model.Administrator;
+import enumeracije.SpecijalizacijaServisera;
+import izlaz.RadSaServiserima;
+import model.Serviser;
 
-public class AdministratorEkran extends JDialog {
-	
+public class ServiserEkran extends JDialog {
+
 	private static final long serialVersionUID = 1L;
 
-	private Administrator administrator;
+	private Serviser serviser;
 	
 	private JTextField id, ime, prezime, jmbg, 
-		adresa, brojTelefona, korisnickoIme, lozinka, plataAdministratora;
+		adresa, brojTelefona, korisnickoIme, lozinka, plataServisera;
 	private JComboBox<Pol> pol;
+	private JComboBox<SpecijalizacijaServisera> specijalizacija;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public AdministratorEkran(Administrator administrator) {
-		super(null, "Administrator", Dialog.ModalityType.DOCUMENT_MODAL);
+	public ServiserEkran(Serviser serviser) {
+		super(null, "Serviser", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
-		this.setSize(new Dimension(300, 365));
+		this.setSize(new Dimension(300, 400));
 		this.setLocationRelativeTo(null);
 		
 		id = new JTextField();
@@ -45,7 +47,8 @@ public class AdministratorEkran extends JDialog {
 		brojTelefona = new JTextField();
 		korisnickoIme = new JTextField();
 		lozinka = new JTextField();
-		plataAdministratora = new JTextField();
+		plataServisera = new JTextField();
+		specijalizacija = new JComboBox<SpecijalizacijaServisera>(SpecijalizacijaServisera.values());
 		obrisan = new JCheckBox();
 		
 		potvrdi = new JButton("Potvrdi");
@@ -54,8 +57,8 @@ public class AdministratorEkran extends JDialog {
 		postaviElemente();
 		postaviFunkcionalnosti();
 		
-		if(administrator != null) {
-			this.administrator = administrator;
+		if(serviser != null) {
+			this.serviser = serviser;
 			popuniPodatke();
 		}
 		
@@ -64,7 +67,7 @@ public class AdministratorEkran extends JDialog {
 	
 	private void postaviElemente() {
 
-		GridLayout gl = new GridLayout(12, 2);
+		GridLayout gl = new GridLayout(13, 2);
 		this.setLayout(gl);
 		
 		this.add(new JLabel("ID: ", SwingConstants.RIGHT));
@@ -96,7 +99,10 @@ public class AdministratorEkran extends JDialog {
 		this.add(lozinka);
 		
 		this.add(new JLabel("Plata: ", SwingConstants.RIGHT));
-		this.add(plataAdministratora);
+		this.add(plataServisera);
+
+		this.add(new JLabel("Specijalizacija: ", SwingConstants.RIGHT));
+		this.add(specijalizacija);
 		
 		this.add(new JLabel("Obrisan: ", SwingConstants.RIGHT));
 		this.add(obrisan);
@@ -106,17 +112,17 @@ public class AdministratorEkran extends JDialog {
 	}
 	
 	private void popuniPodatke() {
-		id.setText(administrator.getId());
-		ime.setText(administrator.getIme());
-		prezime.setText(administrator.getPrezime());
-		jmbg.setText(administrator.getJmbg());
-		pol.setSelectedIndex(administrator.getPol().ordinal());
-		adresa.setText(administrator.getAdresa());
-		brojTelefona.setText(administrator.getBrojTelefona());
-		korisnickoIme.setText(administrator.getKorisnickoIme());
-		lozinka.setText(administrator.getLozinka());
-		plataAdministratora.setText(Float.toString(administrator.getPlata()));
-		obrisan.setSelected(administrator.getObrisan());
+		id.setText(serviser.getId());
+		ime.setText(serviser.getIme());
+		prezime.setText(serviser.getPrezime());
+		jmbg.setText(serviser.getJmbg());
+		pol.setSelectedIndex(serviser.getPol().ordinal());
+		adresa.setText(serviser.getAdresa());
+		brojTelefona.setText(serviser.getBrojTelefona());
+		korisnickoIme.setText(serviser.getKorisnickoIme());
+		lozinka.setText(serviser.getLozinka());
+		plataServisera.setText(Float.toString(serviser.getPlata()));
+		obrisan.setSelected(serviser.getObrisan());
 	}
 	
 	private void postaviFunkcionalnosti() {
@@ -125,30 +131,31 @@ public class AdministratorEkran extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Boolean izmena = true;
 				
-				if(administrator == null) {
-					administrator = new Administrator();
+				if(serviser == null) {
+					serviser = new Serviser();
 					izmena = false;
 				}
 				Float plata = (float) 0.0;
 				try {
-					plata = Float.parseFloat(plataAdministratora.getText());
+					plata = Float.parseFloat(plataServisera.getText());
 				} catch (Exception ex) { }
 				
-				administrator.setIme(ime.getText());
-				administrator.setPrezime(prezime.getText());
-				administrator.setJmbg(jmbg.getText());
-				administrator.setPol(Pol.values()[pol.getSelectedIndex()]);
-				administrator.setAdresa(adresa.getText());
-				administrator.setBrojTelefona(brojTelefona.getText());
-				administrator.setKorisnickoIme(korisnickoIme.getText());
-				administrator.setLozinka(lozinka.getText());
-				administrator.setPlata(plata);
-				administrator.setObrisan(obrisan.isSelected());
+				serviser.setIme(ime.getText());
+				serviser.setPrezime(prezime.getText());
+				serviser.setJmbg(jmbg.getText());
+				serviser.setPol(Pol.values()[pol.getSelectedIndex()]);
+				serviser.setAdresa(adresa.getText());
+				serviser.setBrojTelefona(brojTelefona.getText());
+				serviser.setKorisnickoIme(korisnickoIme.getText());
+				serviser.setLozinka(lozinka.getText());
+				serviser.setPlata(plata);
+				serviser.setSpecijalizacija(SpecijalizacijaServisera.values()[specijalizacija.getSelectedIndex()]);
+				serviser.setObrisan(obrisan.isSelected());
 				
 				if(izmena) {
-					RadSaAdministratorima.izmeniAdministratora(administrator);
+					RadSaServiserima.izmeniServisera(serviser);
 				} else {
-					RadSaAdministratorima.dodajAdministratora(administrator);
+					RadSaServiserima.dodajServisera(serviser);
 				}
 				
 				ugasi();

@@ -12,7 +12,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -25,10 +24,12 @@ import model.ServisnaKnjizica;
 
 public class ServisnaKnjizicaEkran extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
+
 	private ServisnaKnjizica servisnaKnjizica;
 	
 	private JTextField id, automobil;
-	private DefaultListModel servisiDlm;
+	private DefaultListModel<String> servisiDlm;
 	private JList<String> servisi;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
@@ -41,11 +42,11 @@ public class ServisnaKnjizicaEkran extends JDialog {
 		
 		id = new JTextField();
 		automobil = new JTextField();
-		servisiDlm = new DefaultListModel();
+		servisiDlm = new DefaultListModel<String>();
 		for(Servis servis : servisnaKnjizica.getServisi()) {
 			servisiDlm.addElement(servis.getId());
 		}
-		servisi = new JList(servisiDlm);
+		servisi = new JList<String>(servisiDlm);
 		obrisan = new JCheckBox();
 
 		potvrdi = new JButton("Potvrdi");

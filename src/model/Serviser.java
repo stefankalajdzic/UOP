@@ -24,7 +24,7 @@ public class Serviser extends Korisnik {
 	public float getPlata() {
 		return plata;
 	}
-	public void setPlata(int plata) {
+	public void setPlata(float plata) {
 		this.plata = plata;
 	}
 	public SpecijalizacijaServisera getSpecijalizacija() {
@@ -52,6 +52,7 @@ public class Serviser extends Korisnik {
 			   this.getKorisnickoIme() + "|" + 
 			   this.getLozinka() + "|" +
 			   Float.toString(this.getPlata()) + "|" +
-			   Integer.toString(this.getSpecijalizacija().ordinal()) + "\n";
+			   Integer.toString(this.getSpecijalizacija().ordinal()) + "|" + 
+			   this.getObrisan() + "\n";
  	}
 }

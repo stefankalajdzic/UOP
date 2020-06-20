@@ -10,6 +10,8 @@ import model.Servis;
 
 public class ServisiTabela extends JTable{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "ID Auta", "Serviser",
 									   "Termin", "Opis", "Delovi", 

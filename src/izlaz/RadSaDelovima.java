@@ -1,12 +1,14 @@
 package izlaz;
 
-import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
@@ -56,5 +58,60 @@ public class RadSaDelovima {
 		}
 		
 		return delovi;
+	}
+	
+	public static Deo ucitajDeo(String ulazniId) {
+		ArrayList<Deo> delovi = ucitajDelove();
+		for(Deo deo : delovi) {
+			if(deo.getId().equals(ulazniId)) {
+				return deo;
+			}
+		}
+		
+		return null;
+	}
+	
+	public static void dodajDeo(Deo ulazniDeo) {
+		try {
+			int id = 0;
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/delovi.txt", true);
+			ArrayList<Deo> delovi = ucitajDelove();
+			
+			for(Deo deo : delovi) {
+				int trenutniId = Integer.parseInt(deo.getId());
+				if(trenutniId > id) {
+					id = trenutniId;
+				}
+			}
+			
+			id++;
+			
+			ulazniDeo.setId(Integer.toString(id));
+		    
+			outputStream.write(ulazniDeo.toStringZaUpis().getBytes());
+		    outputStream.close();
+		} catch(IOException ex) {
+			System.out.println("Greska prilikom upisa u datotoeku delovi.txt");
+		}	
+	}
+	
+	public static void izmeniDeo(Deo ulazniDeo) {
+		ArrayList<Deo> delovi = ucitajDelove();
+		try {
+			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/delovi.txt", false);
+			outputStream.write("".getBytes());
+			for (Deo deo : delovi) {
+				if(deo.getId().equals(ulazniDeo.getId())) {
+					outputStream.write(ulazniDeo.toStringZaUpis().getBytes());
+				} else {
+					outputStream.write(deo.toStringZaUpis().getBytes());
+				}
+			}
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

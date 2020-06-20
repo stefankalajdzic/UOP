@@ -26,12 +26,15 @@ import model.Serviser;
 
 public class ServisEkran extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private Servis servis;
 	private ArrayList<Automobil> automobili;
 	private ArrayList<Serviser> serviseri;
 	
 	private JTextField id, termin, opis, delovi;
-	private JComboBox automobil, serviser, status;
+	private JComboBox<String> automobil, serviser;
+	private JComboBox<StatusServisa> status;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
@@ -45,18 +48,18 @@ public class ServisEkran extends JDialog {
 		serviseri = RadSaServiserima.ucitajServisere();
 
 		id = new JTextField();
-		automobil = new JComboBox();
+		automobil = new JComboBox<String>();
 		for(Automobil automobil : automobili) {
 			this.automobil.addItem(automobil.getId());
 		}
-		serviser = new JComboBox();
+		serviser = new JComboBox<String>();
 		for(Serviser serviser : serviseri) {
 			this.serviser.addItem(serviser.getId() + "|" + serviser.getIme() + " " + serviser.getPrezime());
 		}
 		termin = new JTextField();
 		opis = new JTextField();
 		delovi = new JTextField();
-		status = new JComboBox(StatusServisa.values());
+		status = new JComboBox<StatusServisa>(StatusServisa.values());
 		obrisan = new JCheckBox();
 		
 		potvrdi = new JButton("Potvrdi");

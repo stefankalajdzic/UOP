@@ -6,10 +6,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import izlaz.RadSaServisnimKnjizicama;
-import model.Servis;
 import model.ServisnaKnjizica;
 
 public class ServisneKnjiziceTabela extends JTable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "ID Auta", "ID Servisa", "Obrisan" };

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -18,14 +19,22 @@ import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import izlaz.RadSaAutomobilima;
+import izlaz.RadSaMusterijama;
 import model.Automobil;
+import model.Musterija;
 
 public class AutomobilEkran extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
+
 	private Automobil automobil;
+	private ArrayList<Musterija> musterije;
 	
-	private JTextField id, vlasnik, godinaProizvodnje, zapreminaMotora, snagaMotora;
-	private JComboBox<String> marka, model, gorivo;
+	private JTextField id, godinaProizvodnje, zapreminaMotora, snagaMotora;
+	private JComboBox<String> vlasnik;
+	private JComboBox<MarkaAutomobila> marka;
+	private JComboBox<ModelAutomobila> model; 
+	private JComboBox<Gorivo> gorivo;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
@@ -35,14 +44,19 @@ public class AutomobilEkran extends JDialog {
 		this.setSize(new Dimension(300, 300));
 		this.setLocationRelativeTo(null);
 		
+		musterije = RadSaMusterijama.ucitajMusterije();
+		
 		id = new JTextField();
-		vlasnik = new JTextField();
-		marka = new JComboBox(MarkaAutomobila.values());
-		model = new JComboBox(ModelAutomobila.values());
+		vlasnik = new JComboBox<String>();
+		for(Musterija musterija : musterije) {
+			this.vlasnik.addItem(musterija.getId() + "|" + musterija.getIme() + " " + musterija.getPrezime());
+		}
+		marka = new JComboBox<MarkaAutomobila>(MarkaAutomobila.values());
+		model = new JComboBox<ModelAutomobila>(ModelAutomobila.values());
 		godinaProizvodnje = new JTextField();
 		zapreminaMotora = new JTextField();
 		snagaMotora = new JTextField();
-		gorivo = new JComboBox(Gorivo.values());
+		gorivo = new JComboBox<Gorivo>(Gorivo.values());
 		obrisan = new JCheckBox();
 
 		potvrdi = new JButton("Potvrdi");
@@ -67,7 +81,7 @@ public class AutomobilEkran extends JDialog {
 		this.add(id);
 		this.id.setEditable(false);
 		
-		// Vlasnik
+		this.add(new JLabel("Vlasnik: ", SwingConstants.RIGHT));
 		
 		this.add(new JLabel("Marka: ", SwingConstants.RIGHT));
 		this.add(marka);

@@ -1,7 +1,5 @@
 package model;
 
-import java.util.ArrayList;
-
 import enumeracije.Pol;
 
 public class Musterija extends Korisnik {

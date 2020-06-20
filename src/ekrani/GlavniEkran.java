@@ -1,18 +1,18 @@
 package ekrani;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import net.miginfocom.swing.MigLayout;
 
 public class GlavniEkran extends JFrame
 {
+	private static final long serialVersionUID = 1L;
+	
 	private GlavniEkranAdmin glavniEkranAdmin;
 	private MigLayout migLayout;
 	private JButton dodaj;

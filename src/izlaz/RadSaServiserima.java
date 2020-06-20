@@ -30,13 +30,13 @@ public class RadSaServiserima {
 				String ime = lineSplit[1];
 				String prezime = lineSplit[2];
 				String jmbg = lineSplit[3];
-				Pol pol = Pol.valueOf(lineSplit[4]);
+				Pol pol = Pol.values()[Integer.parseInt(lineSplit[4])];
 				String adresa = lineSplit[5];
 				String brojTelefona = lineSplit[6];
 				String korisnickoIme = lineSplit[7];
 				String lozinka = lineSplit[8];
 				float plata = Float.parseFloat(lineSplit[9]);
-				SpecijalizacijaServisera specijalizacija = SpecijalizacijaServisera.valueOf(lineSplit[10]);
+				SpecijalizacijaServisera specijalizacija = SpecijalizacijaServisera.values()[Integer.parseInt(lineSplit[10])];
 				Boolean obrisan = Boolean.parseBoolean(lineSplit[11]);
 
 				Serviser serviser = new Serviser(id, ime, prezime, jmbg, pol, adresa, brojTelefona, korisnickoIme, lozinka, plata, specijalizacija, obrisan);

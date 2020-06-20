@@ -4,7 +4,6 @@ import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import izlaz.RadSaMusterijama;
-import izlaz.RadSaServisnimKnjizicama;
 
 public class Automobil {
 

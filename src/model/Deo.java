@@ -77,6 +77,13 @@ public class Deo {
 		return "Deo [id=" + id + ", marka=" + marka + ", model=" + model + ", naziv=" + naziv + ", cena=" + cena + "]";
 	}
 	
-	
+	public String toStringZaUpis() {
+		return this.getId() + "|" +
+			   Integer.toString(this.getMarka().ordinal()) + "|" +
+			   Integer.toString(this.getModel().ordinal()) + "|" +
+			   this.getNaziv() + "|" +
+			   this.getCena() + "|" +
+			   this.getObrisan() + "\n";
+	}
 	
 }

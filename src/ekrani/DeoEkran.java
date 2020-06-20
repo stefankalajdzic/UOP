@@ -19,24 +19,27 @@ import enumeracije.ModelAutomobila;
 import izlaz.RadSaDelovima;
 import model.Deo;
 
-public class DeloviEkran extends JDialog {
+public class DeoEkran extends JDialog {
 	
+	private static final long serialVersionUID = 1L;
+
 	private Deo deo;
 	
 	private JTextField id, naziv, cenaDela;
-	private JComboBox marka, model;
+	private JComboBox<MarkaAutomobila> marka;
+	private JComboBox<ModelAutomobila> model;
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public DeloviEkran() {
+	public DeoEkran(Deo deo) {
 		super(null, "Deo", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
 		this.setSize(new Dimension(300, 200));
 		this.setLocationRelativeTo(null);
 		
 		id = new JTextField();
-		marka = new JComboBox(MarkaAutomobila.values());
-		model = new JComboBox(ModelAutomobila.values());
+		marka = new JComboBox<MarkaAutomobila>(MarkaAutomobila.values());
+		model = new JComboBox<ModelAutomobila>(ModelAutomobila.values());
 		naziv = new JTextField();
 		cenaDela = new JTextField();
 		obrisan = new JCheckBox();
@@ -114,10 +117,12 @@ public class DeloviEkran extends JDialog {
 				deo.setObrisan(obrisan.isSelected());
 				
 				if(izmena) {
-//					RadSaDelovima.izmeniDeo(deo);
+					RadSaDelovima.izmeniDeo(deo);
 				} else {
-//					RadSaDelovima.dodajDeo(deo);
+					RadSaDelovima.dodajDeo(deo);
 				}
+				
+				ugasi();
 			}
 		});
 		this.odustani.addActionListener(new ActionListener() {

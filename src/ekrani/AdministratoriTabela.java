@@ -1,18 +1,16 @@
 package ekrani;
 
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
 import izlaz.RadSaAdministratorima;
 import model.Administrator;
 
 public class AdministratoriTabela extends JTable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "Ime", "Prezime",

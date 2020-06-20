@@ -12,7 +12,6 @@ import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import model.Automobil;
-import model.ServisnaKnjizica;
 
 
 public class RadSaAutomobilima {
