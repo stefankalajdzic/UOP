@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
-import modeli.Automobil;
-import modeli.ServisnaKnjizica;
+import model.Automobil;
+import model.ServisnaKnjizica;
 
 
 public class RadSaAutomobilima {

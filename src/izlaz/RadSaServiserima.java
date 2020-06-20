@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import enumeracije.Pol;
 import enumeracije.SpecijalizacijaServisera;
-import modeli.Serviser;
+import model.Serviser;
 
 
 public class RadSaServiserima {

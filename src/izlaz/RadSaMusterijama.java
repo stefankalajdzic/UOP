@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import enumeracije.Pol;
-import modeli.Automobil;
-import modeli.Musterija;
+import model.Automobil;
+import model.Musterija;
 
 
 public class RadSaMusterijama {

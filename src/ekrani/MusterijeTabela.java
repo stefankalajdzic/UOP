@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 import izlaz.RadSaMusterijama;
-import modeli.Musterija;
+import model.Musterija;
 
 public class MusterijeTabela extends JTable {
 

@@ -1,5 +1,6 @@
 package ekrani;
 
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -17,9 +19,9 @@ import javax.swing.SwingConstants;
 
 import enumeracije.Pol;
 import izlaz.RadSaAdministratorima;
-import modeli.Administrator;
+import model.Administrator;
 
-public class AdministratorEkran extends JFrame {
+public class AdministratorEkran extends JDialog {
 	
 	private Administrator administrator;
 	
@@ -29,10 +31,10 @@ public class AdministratorEkran extends JFrame {
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public AdministratorEkran(int sirina, int visina, Administrator administrator) {
-		super("Administrator");
-		
-		this.setSize(new Dimension(sirina, visina));
+	public AdministratorEkran(Administrator administrator) {
+		super(null, "Administrator", Dialog.ModalityType.DOCUMENT_MODAL);
+		this.setModal(true);
+		this.setSize(new Dimension(300, 400));
 		this.setLocationRelativeTo(null);
 		
 		id = new JTextField();
@@ -138,7 +140,7 @@ public class AdministratorEkran extends JFrame {
 				if(izmena) {
 					RadSaAdministratorima.izmeniAdministratora(administrator);
 				} else {
-					
+					RadSaAdministratorima.dodajAdministratora(administrator);
 				}
 				
 				ugasi();

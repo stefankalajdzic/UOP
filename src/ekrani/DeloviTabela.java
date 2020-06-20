@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 
 import izlaz.RadSaDelovima;
-import modeli.Deo;
+import model.Deo;
 
 public class DeloviTabela extends JTable {
 

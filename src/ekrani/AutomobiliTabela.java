@@ -7,7 +7,7 @@ import java.util.Vector;
 import javax.swing.JTable;
 
 import izlaz.RadSaAutomobilima;
-import modeli.Automobil;
+import model.Automobil;
 
 public class AutomobiliTabela extends JTable {
 	

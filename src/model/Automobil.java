@@ -1,4 +1,4 @@
-package modeli;
+package model;
 
 import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;

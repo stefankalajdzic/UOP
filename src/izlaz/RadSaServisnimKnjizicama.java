@@ -8,8 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import modeli.Administrator;
-import modeli.ServisnaKnjizica;
+import model.Administrator;
+import model.ServisnaKnjizica;
 
 public class RadSaServisnimKnjizicama {
 

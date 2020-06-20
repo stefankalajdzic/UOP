@@ -6,8 +6,8 @@ import javax.swing.JTable;
 
 import izlaz.RadSaAdministratorima;
 import izlaz.RadSaServiserima;
-import modeli.Administrator;
-import modeli.Serviser;
+import model.Administrator;
+import model.Serviser;
 
 public class ServiseriTabela extends JTable {
 	

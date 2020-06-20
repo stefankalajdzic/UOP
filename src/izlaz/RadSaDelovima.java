@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
-import modeli.Deo;
+import model.Deo;
 
 public class RadSaDelovima {
 

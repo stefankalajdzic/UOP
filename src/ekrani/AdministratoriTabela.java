@@ -6,63 +6,42 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import izlaz.RadSaAdministratorima;
-import modeli.Administrator;
+import model.Administrator;
 
 public class AdministratoriTabela extends JTable {
 	
+	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "Ime", "Prezime",
 									   "JMBG", "Pol", "Adresa",
 									   "Br. Tel.", "Korisnicko ime",
 									   "Lozinka", "Plata", "Obrisan",
 									 };
-	private static Object[][] podaci = formatirajPodatke();
+//	private static Object[][] podaci = formatirajPodatke();
 	
 	public AdministratoriTabela() {
-		super(podaci, kolone);
-		
+		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
-		
-		this.addMouseListener(new MouseListener() {
-
-			@Override
-			public void mouseClicked(MouseEvent mouseEvent) {
-				if(mouseEvent.getClickCount() == 2) {
-					JTable table = (JTable)mouseEvent.getSource();
-					String id = (String)podaci[table.getSelectedRow()][0];
-					Administrator administrator = RadSaAdministratorima.ucitajAdministratora(id);
-					new AdministratorEkran(300, 400, administrator);
-				}
-			}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				
-			}
-		});
 	}
 	
-	private static Object[][] formatirajPodatke() {
+	public void osveziTabelu() {
+		DefaultTableModel dm = (DefaultTableModel) this.getModel();
+		for(int i = this.getRowCount() - 1; i >= 0; i-- ) {
+			dm.removeRow(i);
+		}
+		
+		postaviPodatke();
+	}
+	
+	private void postaviPodatke() {
 		ArrayList<Administrator> administratori = RadSaAdministratorima.ucitajAdministratore();
-		Object[][] formatiraniPodaci = new Object[administratori.size()][];
+		model = new DefaultTableModel(kolone, 0);
 		for(int i = 0; i < administratori.size(); i++) {
 			Administrator administrator = administratori.get(i);
-			formatiraniPodaci[i] = new Object[] {
+			model.addRow(new Object[] {
 					administrator.getId(),
 					administrator.getIme(),
 					administrator.getPrezime(),
@@ -74,8 +53,8 @@ public class AdministratoriTabela extends JTable {
 					administrator.getLozinka(),
 					administrator.getPlata(),
 					administrator.getObrisan()
-			};
+			});
 		}
-		return formatiraniPodaci;
+		this.setModel(model);
 	}
 }

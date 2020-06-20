@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 
 import izlaz.RadSaServisima;
-import modeli.Servis;
+import model.Servis;
 
 public class ServisiTabela extends JTable{
 	

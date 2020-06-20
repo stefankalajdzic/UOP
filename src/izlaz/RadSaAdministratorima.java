@@ -8,8 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import modeli.Administrator;
 import enumeracije.Pol;
+import model.Administrator;
 
 
 public class RadSaAdministratorima {
@@ -51,7 +51,7 @@ public class RadSaAdministratorima {
 	}
 	
 	public static Administrator ucitajAdministratora(String ulazniId) {
-		ArrayList<Administrator> administratori = RadSaAdministratorima.ucitajAdministratore();
+		ArrayList<Administrator> administratori = ucitajAdministratore();
 		for(Administrator administrator : administratori) {
 			if(administrator.getId().equals(ulazniId)) {
 				return administrator;
@@ -61,18 +61,27 @@ public class RadSaAdministratorima {
 		return null;
 	}
 	
-	public static void dodajAdministratora(Administrator admin) {
+	public static void dodajAdministratora(Administrator ulazniAdministrator) {
 		try {
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", true);
-		    outputStream.write(admin.toStringZaUpis().getBytes());
+			ArrayList<Administrator> administratori = ucitajAdministratore();
+			int id = 0;
+			for(Administrator administrator : administratori) {
+				int trenutniId = Integer.parseInt(administrator.getId());
+				if(trenutniId > id) {
+					id = trenutniId;
+				}
+				ulazniAdministrator.setId(Integer.toString(id + 1));
+			}
+		    outputStream.write(ulazniAdministrator.toStringZaUpis().getBytes());
 		    outputStream.close();
 		} catch(IOException e) {
-			System.out.println("Greska prilikom upisa u datotoeku korisnici.txt");
+			System.out.println("Greska prilikom upisa u datotoeku administratori.txt");
 		}
 	}
 	
 	public static void izmeniAdministratora(Administrator ulazniAdministrator) {
-		ArrayList<Administrator> administratori = RadSaAdministratorima.ucitajAdministratore();
+		ArrayList<Administrator> administratori = ucitajAdministratore();
 		try {
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/administratori.txt", false);
 			outputStream.write("".getBytes());

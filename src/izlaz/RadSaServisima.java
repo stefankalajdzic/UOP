@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 
 import enumeracije.StatusServisa;
-import modeli.Servis;
+import model.Servis;
 
 public class RadSaServisima {
 	
