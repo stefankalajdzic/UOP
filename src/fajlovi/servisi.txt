@@ -1,2 +1,2 @@
-1|1|1|24.7.2020.|Kvar amortizera|1|0|false
-2|2|2|23.7.2020.|Kvar menjaca|2|1|false
+1|1|2|24.7.2020.|Kvar amortizera||0|false
+2|2|1|23.7.2020.|Kvar menjaca||0|false

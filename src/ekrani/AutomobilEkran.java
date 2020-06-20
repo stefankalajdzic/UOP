@@ -74,7 +74,7 @@ public class AutomobilEkran extends JDialog {
 	}
 	
 	private void postaviElemente() {
-		GridLayout gl = new GridLayout(9, 2);
+		GridLayout gl = new GridLayout(10, 2);
 		this.setLayout(gl);
 		
 		this.add(new JLabel("ID: ", SwingConstants.RIGHT));
@@ -82,6 +82,7 @@ public class AutomobilEkran extends JDialog {
 		this.id.setEditable(false);
 		
 		this.add(new JLabel("Vlasnik: ", SwingConstants.RIGHT));
+		this.add(vlasnik);
 		
 		this.add(new JLabel("Marka: ", SwingConstants.RIGHT));
 		this.add(marka);
@@ -110,7 +111,15 @@ public class AutomobilEkran extends JDialog {
 	
 	private void popuniPodatke() {
 		id.setText(automobil.getId());
-		// vlasnik
+		for(int i = 0; i < musterije.size(); i++) {
+			String item = vlasnik.getItemAt(i);
+			Musterija vlasnik = automobil.getVlasnik();
+			if(item.startsWith(vlasnik.getId() + "|") &&
+			   item.contains(vlasnik.getIme()) &&
+			   item.contains(vlasnik.getPrezime())) {
+				this.vlasnik.setSelectedIndex(i);
+			}
+		}
 		marka.setSelectedIndex(automobil.getMarka().ordinal());
 		model.setSelectedIndex(automobil.getModel().ordinal());
 		godinaProizvodnje.setText(automobil.getGodinaProizvodnje());

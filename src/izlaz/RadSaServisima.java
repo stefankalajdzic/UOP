@@ -11,7 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import enumeracije.StatusServisa;
+import model.Automobil;
 import model.Servis;
+import model.Serviser;
+import model.ServisnaKnjizica;
 
 public class RadSaServisima {
 	
@@ -69,6 +72,28 @@ public class RadSaServisima {
 		}
 		
 		return null;
+	}
+	
+	public static ArrayList<Servis> ucitajServisePoServiseru(Serviser serviser) {
+		ArrayList<Servis> sviServisi = ucitajServise();
+		ArrayList<Servis> povratniServisi = new ArrayList<Servis>();
+		for(Servis servis : sviServisi) {
+			if(servis.getServiser().getId().equals(serviser.getId()) &&
+					servis.getObrisan() == false) {
+				povratniServisi.add(servis);
+			}
+		}
+		
+		return povratniServisi;
+	}
+
+	public static ArrayList<Servis> ucitajServisePoAutomobilu(Automobil automobil) {
+		ServisnaKnjizica servisnaKnjizica = RadSaServisnimKnjizicama.ucitajServisnuKnjizicuPoAutomobilu(automobil.getId());
+		if(servisnaKnjizica != null) {
+			return servisnaKnjizica.getServisi();
+		} else {
+			return new ArrayList<Servis>();
+		}
 	}
 	
 	public static void dodajServis(Servis ulazniServis) {

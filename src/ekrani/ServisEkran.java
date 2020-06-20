@@ -29,6 +29,8 @@ public class ServisEkran extends JDialog {
 	private static final long serialVersionUID = 1L;
 	
 	private Servis servis;
+	private Boolean flag;
+	
 	private ArrayList<Automobil> automobili;
 	private ArrayList<Serviser> serviseri;
 	
@@ -38,12 +40,14 @@ public class ServisEkran extends JDialog {
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public ServisEkran(Servis servis) {
+	public ServisEkran(Servis servis, Boolean flag) {
 		super(null, "Servis", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
 		this.setSize(new Dimension(300, 300));
 		this.setLocationRelativeTo(null);
 
+		this.flag = flag;
+		
 		automobili = RadSaAutomobilima.ucitajAutomobile();
 		serviseri = RadSaServiserima.ucitajServisere();
 
@@ -64,14 +68,15 @@ public class ServisEkran extends JDialog {
 		
 		potvrdi = new JButton("Potvrdi");
 		odustani = new JButton("Odustani");
-		
-		postaviElemente();
-		postaviFunkcionalnosti();
-		
+
 		if(servis != null) {
 			this.servis = servis;
 			popuniPodatke();
 		}
+		
+		postaviElemente();
+		postaviFunkcionalnosti();
+		
 		
 		this.setVisible(true);
 	}
@@ -89,6 +94,9 @@ public class ServisEkran extends JDialog {
 
 		this.add(new JLabel("Serviser: ", SwingConstants.RIGHT));
 		this.add(serviser);
+		if(flag) {
+			serviser.setEnabled(false);
+		}
 
 		this.add(new JLabel("Termin: ", SwingConstants.RIGHT));
 		this.add(termin);
@@ -100,6 +108,9 @@ public class ServisEkran extends JDialog {
 		this.add(delovi);
 		
 		this.add(new JLabel("Status: ", SwingConstants.RIGHT));
+		if(servis == null) {
+			status.setEnabled(false);
+		}
 		this.add(status);
 
 		this.add(new JLabel("Obrisan: ", SwingConstants.RIGHT));

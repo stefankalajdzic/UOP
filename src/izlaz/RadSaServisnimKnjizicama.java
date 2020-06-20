@@ -51,6 +51,15 @@ public class RadSaServisnimKnjizicama {
 		
 		return null;
 	}
+	public static ServisnaKnjizica ucitajServisnuKnjizicuPoAutomobilu(String automobil) {
+		ArrayList<ServisnaKnjizica> servisneKnjizice = ucitajServisneKnjizice();
+		for(ServisnaKnjizica servisnaKnjizica : servisneKnjizice) {
+			if(servisnaKnjizica.getAutomobil().getId().equals(automobil) ) {
+				return servisnaKnjizica;
+			}
+		}
+		return null;
+	}
 	
 	public static void dodajServisnuKnjizicu(ServisnaKnjizica ulaznaServisnaKnjizica) {
 		try {

@@ -20,7 +20,7 @@ import model.Servis;
 import model.Serviser;
 import model.ServisnaKnjizica;
 
-public class GlavniEkranAdmin extends JTabbedPane {
+public class GlavniEkranAdministrator extends JTabbedPane {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -45,7 +45,7 @@ public class GlavniEkranAdmin extends JTabbedPane {
 	private AdministratoriTabela administratoriTabela;
 	private JScrollPane administratoriTabelaWraper;
 
-	public GlavniEkranAdmin() {
+	public GlavniEkranAdministrator() {
 		super();
 		
 		// Automobili
@@ -101,7 +101,7 @@ public class GlavniEkranAdmin extends JTabbedPane {
 				
 			// Servisi
 			case 2:
-				new ServisEkran(null);
+				new ServisEkran(null, false);
 				
 				servisiTabela.osveziTabelu();
 				break;
@@ -168,7 +168,7 @@ public class GlavniEkranAdmin extends JTabbedPane {
 				if(row != -1) { 
 					String id = (String)servisiTabela.getModel().getValueAt(row, 0);
 					Servis servis = RadSaServisima.ucitajServis(id);
-					new ServisEkran(servis);
+					new ServisEkran(servis, false);
 					
 					servisiTabela.osveziTabelu();
 				}

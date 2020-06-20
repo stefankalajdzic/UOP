@@ -12,6 +12,7 @@ import enumeracije.Gorivo;
 import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import model.Automobil;
+import model.Musterija;
 
 
 public class RadSaAutomobilima {
@@ -60,7 +61,19 @@ public class RadSaAutomobilima {
 		
 		return null;
 	}
-
+	
+	public static ArrayList<Automobil> ucitajAutomobilePoMusteriji(Musterija musterija) {
+		ArrayList<Automobil> sviAutomobili = ucitajAutomobile();
+		ArrayList<Automobil> povratniAutomobili = new ArrayList<Automobil>();
+		for(Automobil automobil : sviAutomobili) {
+			if(automobil.getVlasnik().getId().equals(musterija.getId())) {
+				povratniAutomobili.add(automobil);
+			}
+		}
+		
+		return povratniAutomobili;
+	}
+	
 	public static void dodajAutomobil(Automobil ulazniAutomobil) {
 		try {
 			int id = 0;

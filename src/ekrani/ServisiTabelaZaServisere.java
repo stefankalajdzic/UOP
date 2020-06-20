@@ -7,19 +7,22 @@ import javax.swing.table.DefaultTableModel;
 
 import izlaz.RadSaServisima;
 import model.Servis;
+import model.Serviser;
 
-public class ServisiTabela extends JTable {
-	
+public class ServisiTabelaZaServisere extends JTable {
+
 	private static final long serialVersionUID = 1L;
 	
+	private Serviser serviser;
 	private static DefaultTableModel model;
 	private static String[] kolone = { "ID", "ID Auta", "Serviser",
 									   "Termin", "Opis", "Delovi", 
-									   "Status", "Obrisan"
+									   "Status"
 									 };
 	
-	public ServisiTabela() {
+	public ServisiTabelaZaServisere(Serviser serviser) {
 		super();
+		this.serviser = serviser;
 		postaviPodatke();
 		this.setDefaultEditor(Object.class, null);
 	}
@@ -34,7 +37,7 @@ public class ServisiTabela extends JTable {
 	}
 	
 	private void postaviPodatke() {
-		ArrayList<Servis> servisi = RadSaServisima.ucitajServise();
+		ArrayList<Servis> servisi = RadSaServisima.ucitajServisePoServiseru(serviser);
 		model = new DefaultTableModel(kolone, 0);
 		for(int i = 0; i < servisi.size(); i++) {
 			Servis servis = servisi.get(i);
@@ -45,8 +48,7 @@ public class ServisiTabela extends JTable {
 					servis.getTermin(),
 					servis.getOpis(),
 					servis.toStringDelovi(),
-					servis.getStatus(),
-					servis.getObrisan()
+					servis.getStatus()
 			});
 		}
 		this.setModel(model);
