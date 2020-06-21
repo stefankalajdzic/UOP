@@ -20,9 +20,11 @@ import izlaz.RadSaAutomobilima;
 import izlaz.RadSaDelovima;
 import izlaz.RadSaServiserima;
 import izlaz.RadSaServisima;
+import izlaz.RadSaServisnimKnjizicama;
 import model.Automobil;
 import model.Servis;
 import model.Serviser;
+import model.ServisnaKnjizica;
 
 public class ServisEkran extends JDialog {
 	
@@ -40,7 +42,7 @@ public class ServisEkran extends JDialog {
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public ServisEkran(Servis servis, Boolean flag) {
+	public ServisEkran(Servis servis, Boolean flag, Automobil prosledjenAutomobil) {
 		super(null, "Servis", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
 		this.setSize(new Dimension(300, 300));
@@ -53,8 +55,16 @@ public class ServisEkran extends JDialog {
 
 		id = new JTextField();
 		automobil = new JComboBox<String>();
-		for(Automobil automobil : automobili) {
-			this.automobil.addItem(automobil.getId());
+		for(int i = 0; i < automobili.size(); i++) {
+			this.automobil.addItem(automobili.get(i).getId());
+			if(prosledjenAutomobil != null) {
+				if(automobili.get(i).getId().equals(prosledjenAutomobil.getId())) {
+					automobil.setSelectedIndex(i);
+				}				
+			}
+		}
+		if(prosledjenAutomobil != null) {
+			automobil.setEnabled(false);
 		}
 		serviser = new JComboBox<String>();
 		for(Serviser serviser : serviseri) {
@@ -162,7 +172,11 @@ public class ServisEkran extends JDialog {
 				if(izmena) {
 					RadSaServisima.izmeniServis(servis);
 				} else {
-					RadSaServisima.dodajServis(servis);
+					// Posto servis ne moze da stoji sam za sebe mora da se doda u knjizicu pa zatim sacuva
+					Servis povratniServis = RadSaServisima.dodajServis(servis);
+					ServisnaKnjizica servisnaKnjizica = RadSaServisnimKnjizicama.ucitajServisnuKnjizicuPoAutomobilu(automobilId);
+					servisnaKnjizica.getServisi().add(povratniServis);
+					RadSaServisnimKnjizicama.izmeniServisnuKnjizicu(servisnaKnjizica);
 				}
 				
 				ugasi();

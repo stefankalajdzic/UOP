@@ -74,8 +74,11 @@ public class GlavniEkran extends JFrame
 		} else if (ulogovanServiser != null) {
 			this.add(glavniEkranServiser, "span 3 1,growx");
 		} else if (ulogovanaMusterija != null) {
+			// "dodaj" postaje "dodaj auto"
+			// "izmeni" postaje "zakazi servis"
+			dodaj.setText("Dodaj auto");
+			izmeni.setText("Zakazi servis");
 			this.add(glavniEkranMusterija, "span 3 1,growx");
-			izmeni.setEnabled(false);
 		}
 	}
 	
@@ -87,6 +90,8 @@ public class GlavniEkran extends JFrame
 					glavniEkranAdministrator.dodajIzmeni(true);
 				} else if (ulogovanServiser != null) {
 					glavniEkranServiser.dodajIzmeni(true);
+				} else if(ulogovanaMusterija != null) {
+					glavniEkranMusterija.dodajAuto();
 				}
 			}
 		});
@@ -98,6 +103,8 @@ public class GlavniEkran extends JFrame
 					glavniEkranAdministrator.dodajIzmeni(false);					
 				} else if (ulogovanServiser != null) {
 					glavniEkranServiser.dodajIzmeni(false);
+				} else if (ulogovanaMusterija != null) {
+					glavniEkranMusterija.dodajServis();
 				}
 			}
 		});

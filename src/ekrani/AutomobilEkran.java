@@ -20,14 +20,17 @@ import enumeracije.MarkaAutomobila;
 import enumeracije.ModelAutomobila;
 import izlaz.RadSaAutomobilima;
 import izlaz.RadSaMusterijama;
+import izlaz.RadSaServisnimKnjizicama;
 import model.Automobil;
 import model.Musterija;
+import model.ServisnaKnjizica;
 
 public class AutomobilEkran extends JDialog {
 	
 	private static final long serialVersionUID = 1L;
 
 	private Automobil automobil;
+	private Musterija musterija;
 	private ArrayList<Musterija> musterije;
 	
 	private JTextField id, godinaProizvodnje, zapreminaMotora, snagaMotora;
@@ -38,18 +41,24 @@ public class AutomobilEkran extends JDialog {
 	private JCheckBox obrisan;
 	private JButton potvrdi, odustani;
 	
-	public AutomobilEkran(Automobil automobil) {
+	public AutomobilEkran(Automobil automobil, Musterija musterija) {
 		super(null, "Automobil", Dialog.ModalityType.DOCUMENT_MODAL);
 		this.setModal(true);
 		this.setSize(new Dimension(300, 300));
 		this.setLocationRelativeTo(null);
 		
+		this.setMusterija(musterija);
 		musterije = RadSaMusterijama.ucitajMusterije();
 		
 		id = new JTextField();
 		vlasnik = new JComboBox<String>();
-		for(Musterija musterija : musterije) {
-			this.vlasnik.addItem(musterija.getId() + "|" + musterija.getIme() + " " + musterija.getPrezime());
+		for(int i = 0; i < musterije.size(); i++) {
+			this.vlasnik.addItem(musterije.get(i).getId() + "|" + musterije.get(i).getIme() + " " + musterije.get(i).getPrezime());
+			if(musterija != null) {
+				if(musterije.get(i).getId().equals(musterija.getId())) {
+					this.vlasnik.setSelectedIndex(i);
+				}				
+			}
 		}
 		marka = new JComboBox<MarkaAutomobila>(MarkaAutomobila.values());
 		model = new JComboBox<ModelAutomobila>(ModelAutomobila.values());
@@ -70,6 +79,10 @@ public class AutomobilEkran extends JDialog {
 			popuniPodatke();
 		}
 		
+		if(musterija != null) {
+			this.vlasnik.setEnabled(false);
+			this.obrisan.setEnabled(false);
+		}
 		this.setVisible(true);
 	}
 	
@@ -147,6 +160,8 @@ public class AutomobilEkran extends JDialog {
 					snaga = Integer.parseInt(snagaMotora.getText());
 				} catch (Exception ex) { }
  				
+				String vlasnikId = ((String)vlasnik.getSelectedItem()).split("|")[0];
+				automobil.setVlasnik(RadSaMusterijama.ucitajMusteriju(vlasnikId));
 				automobil.setMarka(MarkaAutomobila.values()[marka.getSelectedIndex()]);
 				automobil.setModel(ModelAutomobila.values()[model.getSelectedIndex()]);
 				automobil.setGodinaProizvodnje(godinaProizvodnje.getText());
@@ -158,7 +173,10 @@ public class AutomobilEkran extends JDialog {
 				if(izmena) {
 					RadSaAutomobilima.izmeniAutomobil(automobil);
 				} else {
-					RadSaAutomobilima.dodajAutomobil(automobil);
+					Automobil povratniAutomobil = RadSaAutomobilima.dodajAutomobil(automobil);
+					ServisnaKnjizica servisnaKnjizica = new ServisnaKnjizica();
+					servisnaKnjizica.setAutomobil(povratniAutomobil);
+					RadSaServisnimKnjizicama.dodajServisnuKnjizicu(servisnaKnjizica);
 				}
 				
 				ugasi();
@@ -175,5 +193,13 @@ public class AutomobilEkran extends JDialog {
 	
 	private void ugasi() {
 		this.dispose();
+	}
+
+	public Musterija getMusterija() {
+		return musterija;
+	}
+
+	public void setMusterija(Musterija musterija) {
+		this.musterija = musterija;
 	}
 }

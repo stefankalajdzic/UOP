@@ -89,7 +89,7 @@ public class GlavniEkranAdministrator extends JTabbedPane {
 			switch (this.getSelectedIndex()) {
 			// Automobili
 			case 0:
-				new AutomobilEkran(null);
+				new AutomobilEkran(null, null);
 				
 				automobiliTabela.osveziTabelu();
 				break;
@@ -101,8 +101,8 @@ public class GlavniEkranAdministrator extends JTabbedPane {
 				
 			// Servisi
 			case 2:
-				new ServisEkran(null, false);
-				
+				new ServisEkran(null, false, null);
+
 				servisiTabela.osveziTabelu();
 				break;
 				
@@ -142,7 +142,7 @@ public class GlavniEkranAdministrator extends JTabbedPane {
 				if(row != -1) {
 					String id = (String)automobiliTabela.getModel().getValueAt(row, 0);
 					Automobil automobil = RadSaAutomobilima.ucitajAutomobil(id);
-					new AutomobilEkran(automobil);
+					new AutomobilEkran(automobil, null);
 					
 					automobiliTabela.osveziTabelu();
 				}
@@ -168,8 +168,8 @@ public class GlavniEkranAdministrator extends JTabbedPane {
 				if(row != -1) { 
 					String id = (String)servisiTabela.getModel().getValueAt(row, 0);
 					Servis servis = RadSaServisima.ucitajServis(id);
-					new ServisEkran(servis, false);
-					
+					new ServisEkran(servis, false, null);
+	
 					servisiTabela.osveziTabelu();
 				}
 				

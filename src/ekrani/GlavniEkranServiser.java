@@ -24,15 +24,15 @@ public class GlavniEkranServiser extends JTabbedPane {
 	
 	public void dodajIzmeni(Boolean dodaj) {
 		if(dodaj) {
-			new ServisEkran(null, true);
-			
+			new ServisEkran(null, true, null);
+
 			servisiTabela.osveziTabelu();
 		} else {
 			int row = servisiTabela.getSelectedRow();
 			if(row != -1) { 
 				String id = (String)servisiTabela.getModel().getValueAt(row, 0);
 				Servis servis = RadSaServisima.ucitajServis(id);
-				new ServisEkran(servis, false);
+				new ServisEkran(servis, false, null);
 				
 				servisiTabela.osveziTabelu();
 			}

@@ -74,7 +74,7 @@ public class RadSaAutomobilima {
 		return povratniAutomobili;
 	}
 	
-	public static void dodajAutomobil(Automobil ulazniAutomobil) {
+	public static Automobil dodajAutomobil(Automobil ulazniAutomobil) {
 		try {
 			int id = 0;
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/automobili.txt", true);
@@ -93,9 +93,10 @@ public class RadSaAutomobilima {
 		   
 			outputStream.write(ulazniAutomobil.toStringZaUpis().getBytes());
 		    outputStream.close();
-		}catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println("Greska prilikom upisa u datotoeku automobili.txt");
-		}		
+		}
+		return ulazniAutomobil;
 	}
 	
 	public static void izmeniAutomobil(Automobil ulazniAutomobil) {

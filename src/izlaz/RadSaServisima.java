@@ -96,7 +96,7 @@ public class RadSaServisima {
 		}
 	}
 	
-	public static void dodajServis(Servis ulazniServis) {
+	public static Servis dodajServis(Servis ulazniServis) {
 		try {
 			int id = 0;
 			FileOutputStream outputStream = new FileOutputStream("src/fajlovi/servisi.txt", true);
@@ -115,9 +115,10 @@ public class RadSaServisima {
 		   
 			outputStream.write(ulazniServis.toStringZaUpis().getBytes());
 		    outputStream.close();
-		}catch(IOException e) {
+		} catch(IOException e) {
 			System.out.println("Greska prilikom upisa u datotoeku servisi.txt");
-		}		
+		}
+		return ulazniServis;
 	}
 	
 	public static void izmeniServis(Servis ulazniServis) {
